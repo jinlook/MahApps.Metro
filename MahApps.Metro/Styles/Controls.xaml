@@ -67,7 +67,7 @@
                            MaxWidth="250"
                            Margin="8,4,8,4"
                            TextWrapping="Wrap"
-                           Text="{Binding (Validation.Errors)[0].ErrorContent}"
+                           Text="{Binding (Validation.Errors).CurrentItem.ErrorContent}"
                            UseLayoutRounding="false" />
             </Border>
         </Grid>

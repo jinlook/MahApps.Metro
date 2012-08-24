@@ -218,7 +218,7 @@
                                          Placement="Right"
                                          PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                                          Template="{DynamicResource ValidationToolTipTemplate}">
-                                    <ToolTip.Triggers>
+                                    <!--<ToolTip.Triggers>
                                         <EventTrigger RoutedEvent="Canvas.Loaded">
                                             <BeginStoryboard>
                                                 <Storyboard>
@@ -232,7 +232,7 @@
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </EventTrigger>
-                                    </ToolTip.Triggers>
+                                    </ToolTip.Triggers>-->
                                 </ToolTip>
                             </ToolTipService.ToolTip>
                             <Grid Background="Transparent"

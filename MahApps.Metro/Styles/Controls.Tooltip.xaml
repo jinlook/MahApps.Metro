@@ -48,6 +48,7 @@
                             <ContentPresenter Cursor="{TemplateBinding Cursor}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Content="{TemplateBinding Content}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                               Margin="{TemplateBinding Padding}" />
                         </Border>
                     </Border>
