@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>mahapps.metro.logo2.ico</ApplicationIcon>
+    <ApplicationIcon>MVVMApps.metro.logo2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GrayscaleEffect">
@@ -157,7 +157,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="mahapps.metro.logo2.ico" />
+    <Resource Include="MVVMApps.metro.logo2.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MahApps.Metro.Resources\MahApps.Metro.Resources.csproj">
