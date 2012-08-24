@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
-    using MahApps.Metro.Native;
+    using MVVMApps.Metro.Native;
 
     [TemplatePart(Name = "PART_Max", Type = typeof(Button))]
     [TemplatePart(Name = "PART_Close", Type = typeof(Button))]

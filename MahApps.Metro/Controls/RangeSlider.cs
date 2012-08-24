@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public delegate void RangeSelectionChangedEventHandler(object sender, RangeSelectionChangedEventArgs e);
 

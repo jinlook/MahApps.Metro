@@ -11,9 +11,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
-using MahApps.Metro.Converters;
+using MVVMApps.Metro.Converters;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     [TemplateVisualState(Name = NormalState, GroupName = CommonStates)]
     [TemplateVisualState(Name = DisabledState, GroupName = CommonStates)]

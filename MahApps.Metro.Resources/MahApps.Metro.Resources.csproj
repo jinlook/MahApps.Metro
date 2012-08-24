@@ -8,8 +8,8 @@
     <ProjectGuid>{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MahApps.Metro.Resources</RootNamespace>
-    <AssemblyName>MahApps.Metro.Resources</AssemblyName>
+    <RootNamespace>MVVMApps.Metro.Resources</RootNamespace>
+    <AssemblyName>MVVMApps.Metro.Resources</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

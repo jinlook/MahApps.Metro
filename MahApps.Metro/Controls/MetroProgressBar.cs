@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public class MetroProgressBar : ProgressBar
     {

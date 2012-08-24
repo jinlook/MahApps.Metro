@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 
-namespace MahApps.Metro
+namespace MVVMApps.Metro
 {
     public class Accent
     {

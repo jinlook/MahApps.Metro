@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public class RangeSelectionChangedEventArgs : RoutedEventArgs
     {

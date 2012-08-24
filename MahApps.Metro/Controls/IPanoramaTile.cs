@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     /// <summary>
     /// The minimum specification that a tile needs to support  

@@ -5,10 +5,10 @@ using System.Windows.Controls;
 using System.Windows.Interactivity;
 using System.Windows.Interop;
 using System.Windows.Media;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Native;
+using MVVMApps.Metro.Controls;
+using MVVMApps.Metro.Native;
 
-namespace MahApps.Metro.Behaviours
+namespace MVVMApps.Metro.Behaviours
 {
     public class BorderlessWindowBehavior : Behavior<Window>
     {

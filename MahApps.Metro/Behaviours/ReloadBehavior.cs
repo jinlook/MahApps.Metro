@@ -3,9 +3,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro.Controls;
 
-namespace MahApps.Metro.Behaviours
+namespace MVVMApps.Metro.Behaviours
 {
     public static class ReloadBehavior
     {

@@ -1,7 +1,7 @@
 using System.Windows.Interactivity;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro.Controls;
 
-namespace MahApps.Metro.Behaviours
+namespace MVVMApps.Metro.Behaviours
 {
     public class WindowsSettingBehaviour : Behavior<MetroWindow>
     {

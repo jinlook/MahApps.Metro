@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MahApps.Metro.Converters
+namespace MVVMApps.Metro.Converters
 {
     public class ToUpperConverter : MarkupConverter
     {

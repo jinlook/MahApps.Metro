@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Data;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     /// <summary>
     /// Represents a grouping of tiles

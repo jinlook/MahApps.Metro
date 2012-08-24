@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace MahApps.Metro.Native
+namespace MVVMApps.Metro.Native
 {
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public class MONITORINFO

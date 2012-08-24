@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net;
 using System.Windows.Threading;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro.Controls;
 using MetroDemo.Models;
 using Newtonsoft.Json;
 

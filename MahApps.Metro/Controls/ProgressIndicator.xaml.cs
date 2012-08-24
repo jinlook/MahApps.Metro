@@ -5,7 +5,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public class WidthPercentageConverter : IValueConverter
     {

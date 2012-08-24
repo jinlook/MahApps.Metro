@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace MahApps.Metro
+namespace MVVMApps.Metro
 {
     public static class ThemeManager
     {
-        private static readonly ResourceDictionary LightResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml") };
-        private static readonly ResourceDictionary DarkResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml") };
+        private static readonly ResourceDictionary LightResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseLight.xaml") };
+        private static readonly ResourceDictionary DarkResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseDark.xaml") };
 
         private static IEnumerable<Accent> _accents;
         public static IEnumerable<Accent> DefaultAccents
@@ -17,10 +17,10 @@ namespace MahApps.Metro
             {
                 return _accents ?? (_accents =
                     new List<Accent>{
-                        new Accent("Red", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Red.xaml")),
-                        new Accent("Green", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml")),
-                        new Accent("Blue", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml")),
-                        new Accent("Purple", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Purple.xaml")),
+                        new Accent("Red", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Red.xaml")),
+                        new Accent("Green", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Green.xaml")),
+                        new Accent("Blue", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Blue.xaml")),
+                        new Accent("Purple", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Purple.xaml")),
                     });
             }
         }

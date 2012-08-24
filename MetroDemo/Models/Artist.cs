@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Windows.Input;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro.Controls;
 
 namespace MetroDemo.Models
 {

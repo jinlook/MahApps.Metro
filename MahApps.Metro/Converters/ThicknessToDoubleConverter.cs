@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace MahApps.Metro.Converters
+namespace MVVMApps.Metro.Converters
 {
     public class ThicknessToDoubleConverter : IValueConverter
     {

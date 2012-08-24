@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls"
-                    xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours">
+                    xmlns:Controls="clr-namespace:MVVMApps.Metro.Controls"
+                    xmlns:Behaviours="clr-namespace:MVVMApps.Metro.Behaviours">
     <ControlTemplate x:Key="HorizontalScrollBarTemplate" TargetType="{x:Type ScrollBar}">
         <Grid>
             <Grid.ColumnDefinitions>

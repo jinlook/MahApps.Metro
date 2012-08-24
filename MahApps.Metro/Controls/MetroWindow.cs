@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using MahApps.Metro.Native;
+using MVVMApps.Metro.Native;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     [TemplatePart(Name = PART_TitleBar, Type = typeof(UIElement))]
     [TemplatePart(Name = PART_WindowCommands, Type = typeof(WindowCommands))]

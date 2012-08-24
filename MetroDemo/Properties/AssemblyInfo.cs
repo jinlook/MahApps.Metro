@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MahApps.Metro.Demo")]
+[assembly: AssemblyTitle("MVVMApps.Metro.Demo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MahApps")]
-[assembly: AssemblyProduct("MahApps.Metro.Demo")]
-[assembly: AssemblyCopyright("Copyright © MahApps 2011")]
+[assembly: AssemblyCompany("MVVMApps")]
+[assembly: AssemblyProduct("MVVMApps.Metro.Demo")]
+[assembly: AssemblyCopyright("Copyright © MVVMApps 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

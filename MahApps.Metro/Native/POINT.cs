@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace MahApps.Metro.Native
+namespace MVVMApps.Metro.Native
 {
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]

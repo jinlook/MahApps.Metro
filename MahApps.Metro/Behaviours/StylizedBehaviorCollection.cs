@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Interactivity;
 
-namespace MahApps.Metro.Behaviours
+namespace MVVMApps.Metro.Behaviours
 {
     public class StylizedBehaviorCollection : FreezableCollection<Behavior>
     {

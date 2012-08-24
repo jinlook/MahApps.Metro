@@ -1,9 +1,9 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro.Controls;
 
-namespace MahApps.Metro.Converters
+namespace MVVMApps.Metro.Converters
 {
     public class OffOnConverter : IValueConverter
     {

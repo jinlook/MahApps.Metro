@@ -9,8 +9,8 @@
     <ProjectGuid>{5B1710D2-5DC8-4754-91B2-19165DE49B3D}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MahApps.Metro</RootNamespace>
-    <AssemblyName>MahApps.Metro</AssemblyName>
+    <RootNamespace>MVVMApps.Metro</RootNamespace>
+    <AssemblyName>MVVMApps.Metro</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

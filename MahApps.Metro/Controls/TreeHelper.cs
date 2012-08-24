@@ -6,7 +6,7 @@ using System.Windows.Media;
 /// This class was obtained from Philip Sumi (a fellow WPF Discples blog)
 /// http://www.hardcodet.net/uploads/2009/06/UIHelper.cs
 /// </summary>
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     /// <summary>
     /// Helper methods for UI-related tasks.

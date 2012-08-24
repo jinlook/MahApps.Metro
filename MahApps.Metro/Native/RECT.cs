@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-namespace MahApps.Metro.Native
+namespace MVVMApps.Metro.Native
 {
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
     public struct RECT

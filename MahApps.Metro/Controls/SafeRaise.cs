@@ -1,6 +1,6 @@
 using System;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     internal static class SafeRaise
     {

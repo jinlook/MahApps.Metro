@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls"
-                    xmlns:conv="clr-namespace:MahApps.Metro.Converters"
-                    xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours">
+                    xmlns:Controls="clr-namespace:MVVMApps.Metro.Controls"
+                    xmlns:conv="clr-namespace:MVVMApps.Metro.Converters"
+                    xmlns:Behaviours="clr-namespace:MVVMApps.Metro.Behaviours">
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <conv:ToUpperConverter x:Key="ToUpperConverter" />

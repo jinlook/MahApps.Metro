@@ -1,4 +1,4 @@
-namespace MahApps.Metro
+namespace MVVMApps.Metro
 {
     public enum Theme
     {

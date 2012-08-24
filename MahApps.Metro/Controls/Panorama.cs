@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     [TemplatePart(Name = "PART_ScrollViewer", Type = typeof(ScrollViewer))]
     public class Panorama : ItemsControl

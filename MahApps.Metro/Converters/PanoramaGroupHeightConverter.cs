@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MahApps.Metro.Converters
+namespace MVVMApps.Metro.Converters
 {
     public class PanoramaGroupHeightConverter : IMultiValueConverter
     {

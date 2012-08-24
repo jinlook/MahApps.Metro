@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using MahApps.Metro.Native;
+using MVVMApps.Metro.Native;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public class WindowSettings
     {
