@@ -38,8 +38,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="17" />
                             </Grid.ColumnDefinitions>
-
                             <ContentPresenter x:Name="IconPresenter" Content="{TemplateBinding Icon}" Margin="1" Opacity=".7" VerticalAlignment="Center" />
+                            <Border Name="Check" Width="13" Height="13" Visibility="Collapsed" Margin="6,0,6,0"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}">
+                                <Path Name="CheckMark" Visibility="Hidden" SnapsToDevicePixels="False" Fill="{TemplateBinding Foreground}"
+                                      Data="M 0,5.1 L 1.7,5.2 L 3.4,7.1 L 8,0.4 L 9.2,0 L 3.3,10.8 Z" />
+                            </Border>
                             <ContentPresenter x:Name="Presenter" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" Grid.Column="2" />
                         </Grid>
                     </Grid>
@@ -47,6 +53,13 @@
                         <Trigger Property="IsHighlighted" Value="true">
                             <Setter Property="Fill" TargetName="Bg" Value="{DynamicResource HighlightBrush}" />
                             <Setter Property="Foreground" Value="#FFFFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsCheckable" Value="true">
+                            <Setter TargetName="Check" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="IconPresenter" Property="Visibility" Value="Hidden"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
