@@ -6,7 +6,6 @@
 
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/AppBarButton.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Flyout.xaml" />
-        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroContentControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroImage.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroProgressBar.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroWindow.xaml" />

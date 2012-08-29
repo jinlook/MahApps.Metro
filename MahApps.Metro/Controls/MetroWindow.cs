@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -26,6 +29,8 @@ namespace MVVMApps.Metro.Controls
         public static readonly DependencyProperty SavePositionProperty = DependencyProperty.Register("SaveWindowPosition", typeof(bool), typeof(MetroWindow), new PropertyMetadata(false));
         public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(Brush), typeof(MetroWindow));
 
+        public ObservableCollection<Flyout> Flyouts { get; set; }
+
         public Brush TitleForeground
         {
             get { return (Brush)GetValue(TitleForegroundProperty); }
@@ -38,6 +43,11 @@ namespace MVVMApps.Metro.Controls
             set { SetValue(SavePositionProperty, value); }
         }
 
+        public MetroWindow()
+        {
+            if (Flyouts == null)
+                Flyouts = new ObservableCollection<Flyout>();
+        }
         static MetroWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MetroWindow), new FrameworkPropertyMetadata(typeof(MetroWindow)));
@@ -47,13 +57,13 @@ namespace MVVMApps.Metro.Controls
 
         public bool ShowIconOnTitleBar
         {
-            get { return (bool) GetValue(ShowIconOnTitleBarProperty); }
+            get { return (bool)GetValue(ShowIconOnTitleBarProperty); }
             set { SetValue(ShowIconOnTitleBarProperty, value); }
         }
 
         public bool ShowTitleBar
         {
-            get { return (bool) GetValue(ShowTitleBarProperty); }
+            get { return (bool)GetValue(ShowTitleBarProperty); }
             set { SetValue(ShowTitleBarProperty, value); }
         }
 
@@ -91,7 +101,7 @@ namespace MVVMApps.Metro.Controls
         {
             get { return TitleCaps ? Title.ToUpper() : Title; }
         }
-        
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -194,7 +204,7 @@ namespace MVVMApps.Metro.Controls
 
         internal T GetPart<T>(string name) where T : DependencyObject
         {
-            return (T)GetTemplateChild(name);            
+            return (T)GetTemplateChild(name);
         }
 
         private static void ShowSystemMenuPhysicalCoordinates(Window window, Point physicalScreenLocation)
