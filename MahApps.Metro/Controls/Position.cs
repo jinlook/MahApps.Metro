@@ -1,4 +1,4 @@
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public enum Position
     {

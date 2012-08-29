@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Interactivity;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro.Controls;
 
-namespace MahApps.Metro.Actions
+namespace MVVMApps.Metro.Actions
 {
     public class SetFlyoutOpenAction : TargetedTriggerAction<FrameworkElement>
     {

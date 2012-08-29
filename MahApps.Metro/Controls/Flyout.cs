@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     [TemplatePart(Name = "PART_BackButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_Header", Type = typeof(ContentPresenter))]
