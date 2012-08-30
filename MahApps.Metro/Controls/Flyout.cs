@@ -97,10 +97,6 @@ namespace MVVMApps.Metro.Controls
                 hideFrame.Value = -root.DesiredSize.Width;
                 root.RenderTransform = new TranslateTransform(-root.DesiredSize.Width, 0);
             }
-
-
-
         }
-
     }
 }
