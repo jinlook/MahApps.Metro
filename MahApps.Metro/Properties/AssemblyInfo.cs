@@ -8,7 +8,7 @@ using System.Windows.Markup;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MVVMApps")]
 [assembly: AssemblyProduct("MVVMApps.Metro")]
-[assembly: AssemblyCopyright("Copyright © MVVMApps 2011")]
+[assembly: AssemblyCopyright("Copyright © MVVMApps 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
