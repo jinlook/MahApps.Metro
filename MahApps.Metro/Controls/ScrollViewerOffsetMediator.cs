@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     public class ScrollViewerOffsetMediator : FrameworkElement
     {
