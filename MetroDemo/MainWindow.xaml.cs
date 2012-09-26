@@ -83,12 +83,23 @@ namespace MetroDemo
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            pivot.GoToItem(pi3);
+            //pivot.GoToItem(pi3);
+            ((MainWindowViewModel) this.DataContext).SelectedIndex = 2;
         }
 
         private void BtnVSClick(object sender, RoutedEventArgs e)
         {
             new VSDemo().Show();
+        }
+
+        private void MiDarkOrange(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.ChangeTheme(this, ThemeManager.DefaultAccents.First(a => a.Name == "Orange"), Theme.Dark);
+        }
+
+        private void MiLightOrange(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.ChangeTheme(this, ThemeManager.DefaultAccents.First(a => a.Name == "Orange"), Theme.Light);
         }
     }
 }

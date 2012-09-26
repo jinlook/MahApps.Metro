@@ -17,11 +17,18 @@ namespace MVVMApps.Metro
             {
                 return _accents ?? (_accents =
                     new List<Accent>{
+<<<<<<< HEAD
                         new Accent("Red", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Red.xaml")),
                         new Accent("Green", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Green.xaml")),
                         new Accent("Blue", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Blue.xaml")),
                         new Accent("Purple", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Purple.xaml")),
-                        new Accent("Orange", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Orange.xaml")),
+=======
+                        new Accent("Red", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Red.xaml")),
+                        new Accent("Green", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml")),
+                        new Accent("Blue", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml")),
+                        new Accent("Purple", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Purple.xaml")),
+                        new Accent("Orange", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml")),
+>>>>>>> 9b9200d08f91130a7712bc642809777ad67f9d85
                     });
             }
         }
