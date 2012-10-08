@@ -124,6 +124,8 @@ namespace MVVMApps.Metro.Controls
                         headers.SelectedItem = selectedItem;
                         internalIndex = i;
                         SelectedIndex = i;
+
+                        RaiseEvent(new RoutedEventArgs(SelectionChangedEvent));
                     }
                     break;
                 }
