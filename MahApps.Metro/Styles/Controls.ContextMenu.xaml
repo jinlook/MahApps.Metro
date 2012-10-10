@@ -33,7 +33,7 @@
                 </Grid.ColumnDefinitions>
                 <ContentPresenter x:Name="Icon" ContentSource="Icon" Margin="1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                 <ContentPresenter x:Name="Presenter" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" Grid.Column="2" />
-                <Border x:Name="GlyphPanel" VerticalAlignment="Center" Margin="1" Visibility="Collapsed" Width="22">
+                <Border x:Name="GlyphPanel" VerticalAlignment="Center" Margin="1" Visibility="Hidden" Width="22">
                     <Path x:Name="Glyph" Data="{StaticResource Checkmark}" Fill="{DynamicResource BlackColorBrush}" FlowDirection="LeftToRight" Height="11" Width="9"/>
                 </Border>
             </Grid>
@@ -153,7 +153,7 @@
                     <ColumnDefinition Width="17"/>
                 </Grid.ColumnDefinitions>
                 <ContentPresenter x:Name="Icon" ContentSource="Icon" Margin="1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
-                <Border x:Name="GlyphPanel" Height="22" Margin="1" Visibility="Collapsed" Width="22">
+                <Border x:Name="GlyphPanel" VerticalAlignment="Center" Margin="1" Visibility="Hidden" Width="22">
                     <Path x:Name="Glyph" Data="{StaticResource Checkmark}" Fill="{DynamicResource BlackColorBrush}" FlowDirection="LeftToRight" Height="11" Width="9"/>
                 </Border>
                 <ContentPresenter Grid.Column="2"  ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
