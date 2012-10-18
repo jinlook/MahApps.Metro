@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+using System.Linq;
+using System.Windows.Input;
+using MVVMApps.Metro.Controls;
+
+namespace MetroDemo.Models
+=======
+﻿namespace MetroDemo.Models
+>>>>>>> 25c4439386e61fa06073b3adfaf04f8c3a60f88c
+{
+    public class Artist
+    {
+        public int ArtistId { get; set; }
+        public string Name { get; set; }
+    }
+}
