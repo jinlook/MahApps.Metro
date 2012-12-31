@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
@@ -7,11 +8,19 @@
     
     <System:Double x:Key="HeaderFontSize">40</System:Double>
     <System:Double x:Key="SubHeaderFontSize">29.333</System:Double>
-<<<<<<< HEAD
     <System:Double x:Key="NormalFontSize">16</System:Double>
     <System:Double x:Key="ContentFontSize">13</System:Double>
 =======
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <FontFamily x:Key="DefaultFont">Segoe UI, Lucida Sans Unicode, Verdana</FontFamily>
+    <FontFamily x:Key="HeaderFontFamily">Segoe UI Light, Lucida Sans Unicode, Verdana</FontFamily>
+    <FontFamily x:Key="ContentFontFamily">Segoe UI, Lucida Sans Unicode, Verdana</FontFamily>
+    
+    <System:Double x:Key="HeaderFontSize">40</System:Double>
+    <System:Double x:Key="SubHeaderFontSize">29.333</System:Double>
     <System:Double x:Key="NormalFontSize">14</System:Double>
     <System:Double x:Key="ContentFontSize">12</System:Double>
->>>>>>> 25c4439386e61fa06073b3adfaf04f8c3a60f88c
+>>>>>>> 8eda48129aa70c1b43b287ed53c533b0185f8496
 </ResourceDictionary>

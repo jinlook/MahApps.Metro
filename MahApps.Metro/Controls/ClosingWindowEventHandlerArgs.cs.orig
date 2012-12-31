@@ -1,0 +1,20 @@
+<<<<<<< HEAD
+using System;
+
+namespace MVVMApps.Metro.Controls
+{
+    public class ClosingWindowEventHandlerArgs : EventArgs
+    {
+        public bool Cancelled { get; set; }
+    }
+=======
+using System;
+
+namespace MahApps.Metro.Controls
+{
+    public class ClosingWindowEventHandlerArgs : EventArgs
+    {
+        public bool Cancelled { get; set; }
+    }
+>>>>>>> 8eda48129aa70c1b43b287ed53c533b0185f8496
+}

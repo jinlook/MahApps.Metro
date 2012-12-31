@@ -1,0 +1,30 @@
+<<<<<<< HEAD
+using System.Runtime.InteropServices;
+
+namespace MVVMApps.Metro.Native
+{
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MINMAXINFO
+    {
+        public POINT ptReserved;
+        public POINT ptMaxSize;
+        public POINT ptMaxPosition;
+        public POINT ptMinTrackSize;
+        public POINT ptMaxTrackSize;
+    };
+=======
+using System.Runtime.InteropServices;
+
+namespace MahApps.Metro.Native
+{
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MINMAXINFO
+    {
+        public POINT ptReserved;
+        public POINT ptMaxSize;
+        public POINT ptMaxPosition;
+        public POINT ptMinTrackSize;
+        public POINT ptMaxTrackSize;
+    };
+>>>>>>> 8eda48129aa70c1b43b287ed53c533b0185f8496
+}

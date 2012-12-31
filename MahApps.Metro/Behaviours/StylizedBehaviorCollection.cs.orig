@@ -1,0 +1,28 @@
+<<<<<<< HEAD
+using System.Windows;
+using System.Windows.Interactivity;
+
+namespace MVVMApps.Metro.Behaviours
+{
+    public class StylizedBehaviorCollection : FreezableCollection<Behavior>
+    {
+        protected override Freezable CreateInstanceCore()
+        {
+            return new StylizedBehaviorCollection();
+        }
+    }
+=======
+using System.Windows;
+using System.Windows.Interactivity;
+
+namespace MahApps.Metro.Behaviours
+{
+    public class StylizedBehaviorCollection : FreezableCollection<Behavior>
+    {
+        protected override Freezable CreateInstanceCore()
+        {
+            return new StylizedBehaviorCollection();
+        }
+    }
+>>>>>>> 8eda48129aa70c1b43b287ed53c533b0185f8496
+}

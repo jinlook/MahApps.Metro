@@ -1,0 +1,28 @@
+<<<<<<< HEAD
+using System.Runtime.InteropServices;
+
+namespace MVVMApps.Metro.Native
+{
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MARGINS
+    {
+        public int leftWidth;
+        public int rightWidth;
+        public int topHeight;
+        public int bottomHeight;
+    }
+=======
+using System.Runtime.InteropServices;
+
+namespace MahApps.Metro.Native
+{
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MARGINS
+    {
+        public int leftWidth;
+        public int rightWidth;
+        public int topHeight;
+        public int bottomHeight;
+    }
+>>>>>>> 8eda48129aa70c1b43b287ed53c533b0185f8496
+}
