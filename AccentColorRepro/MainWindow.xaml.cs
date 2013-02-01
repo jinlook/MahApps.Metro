@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
-using MahApps.Metro;
-using MahApps.Metro.Controls;
+using MVVMApps.Metro;
+using MVVMApps.Metro.Controls;
 
 namespace AccentColorRepro
 {
