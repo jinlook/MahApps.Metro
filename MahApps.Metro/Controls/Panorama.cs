@@ -78,7 +78,16 @@ namespace MVVMApps.Metro.Controls
 
             animationTimer.Interval = new TimeSpan(0, 0, 0, 0, 20);
             animationTimer.Tick += HandleWorldTimerTick;
-            animationTimer.Start();
+
+            this.Loaded += (sender, e) =>
+            {
+                animationTimer.Start();
+            };
+
+            this.Unloaded += (sender, e) =>
+            {
+                animationTimer.Stop();
+            };
         }
 
         static Panorama()
@@ -160,7 +169,7 @@ namespace MVVMApps.Metro.Controls
                 var x = TreeHelper.TryFindFromPoint<ListBoxItem>(this, scrollStartPoint);
                 if (x != null)
                 {
-                    x.IsSelected = true;
+                    x.IsSelected = !x.IsSelected;
                     ItemsControl tiles = ItemsControlFromItemContainer(x);
                     var data = tiles.ItemContainerGenerator.ItemFromContainer(x);
                     if (data != null && data is IPanoramaTile)
