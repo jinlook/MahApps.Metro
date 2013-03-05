@@ -62,13 +62,21 @@
                         </Grid>
                         <ContentControl Grid.Column="1" IsTabStop="False" Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter x:Name="contentPresenter"
+<<<<<<< HEAD
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Content="{TemplateBinding Content}"
+                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+=======
                                               TextElement.Foreground="{TemplateBinding Foreground}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Content="{TemplateBinding Content}"
-                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="{TemplateBinding Padding}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+>>>>>>> 585f0c45c5a1dce12c5174808626d5fad2b79109
                         </ContentControl>
                     </Grid>
                     <ControlTemplate.Triggers>

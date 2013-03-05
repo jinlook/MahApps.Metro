@@ -111,7 +111,7 @@
                             <ColumnDefinition Width="16" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Grid x:Name="grid" Height="14" Width="14" Opacity="0.7">
                                 <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" />
                                 <Rectangle x:Name="MouseOverRectangle" Stroke="{DynamicResource CheckBoxMouseOverBrush}" Opacity="0" />
@@ -182,7 +182,7 @@
                                               RecognizesAccessKey="True"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Content="{TemplateBinding Content}"
-                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="{TemplateBinding Padding}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />

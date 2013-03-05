@@ -1,24 +1,36 @@
 ﻿<Controls:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<<<<<<< HEAD
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MVVMApps.Metro.Controls;assembly=MVVMApps.Metro"
         xmlns:MetroDemo="clr-namespace:MetroDemo" mc:Ignorable="d"
         x:Class="MetroDemo.MainWindow"
-<<<<<<< HEAD
         Title="MVVMApps.Metro.Demo"
-        Height="498"
-        Width="585"
-        Icon="MVVMApps.metro.logo2.ico"
-=======
-        Title="MahApps.Metro.Demo"
         Height="540"
         Width="600"
-        Icon="mahapps.metro.logo2.ico"
->>>>>>> 130e1650a401b92207f985256407703b8f2a5e06
+        Icon="MVVMApps.metro.logo2.ico"
         ShowTitleBar="True"
         ShowIconOnTitleBar="true"
         d:DataContext="{d:DesignInstance MetroDemo:MainWindowViewModel}">
+=======
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:MetroDemo="clr-namespace:MetroDemo"
+                      xmlns:views="clr-namespace:MetroDemo.Views"
+                      mc:Ignorable="d"
+                      x:Class="MetroDemo.MainWindow"
+                      Title="MahApps.Metro.Demo"
+                      Height="600"
+                      Width="800"
+                      WindowStartupLocation="CenterScreen"
+                      Icon="mahapps.metro.logo2.ico"
+                      ShowTitleBar="True"
+                      ShowIconOnTitleBar="true"
+                      d:DataContext="{d:DesignInstance MetroDemo:MainWindowViewModel}">
+>>>>>>> 585f0c45c5a1dce12c5174808626d5fad2b79109
 
     <Window.Resources>
         <ResourceDictionary>
@@ -100,7 +112,7 @@
                                             <MenuItem Header="Light Red" IsChecked="True" Click="MiLightRed" />
                                             <MenuItem Header="Light Green" Click="MiLightGreen" />
                                             <MenuItem Header="Light Blue" Click="MiLightBlue" />
-                                            <MenuItem Header="Light Purple" Click="MiLightPurple" />
+                                            <MenuItem Header="Light Purple" Click="MiLightPurple" IsEnabled="False" />
                                             <MenuItem Header="Light Orange" Click="MiLightOrange">
                                                 <MenuItem Header="Light Orange" Click="MiLightOrange" />
                                                 <MenuItem Header="Light Orange" Click="MiLightOrange" />
@@ -281,7 +293,38 @@
                             </Button>
 
                             <Controls:ProgressRing IsActive="True"/>
-                            <Controls:TransitioningContentControl x:Name="transitioning" Width="150" Height="50" Transition="DownTransition" />
+                            
+                            
+                            <Controls:TransitioningContentControl x:Name="transitioning" Width="250" Height="50" Transition="DownTransition" />
+                            
+                            
+                            <Controls:TransitioningContentControl x:Name="customTransitioning"
+                                                                  Width="250"
+                                                                  Height="50"
+                                                                  Transition="CustomTransition">
+                                <Controls:TransitioningContentControl.CustomVisualStates>
+                                    <VisualState x:Name="CustomTransition">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                           Storyboard.TargetName="CurrentContentPresentationSite"
+                                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                                      Value="0" />
+                                                <SplineDoubleKeyFrame KeyTime="00:00:00.700"
+                                                                      Value="1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                           Storyboard.TargetName="PreviousContentPresentationSite"
+                                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                                      Value="1" />
+                                                <SplineDoubleKeyFrame KeyTime="00:00:00.700"
+                                                                      Value="0" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </Controls:TransitioningContentControl.CustomVisualStates>
+                            </Controls:TransitioningContentControl>
                             <Controls:RangeSlider Width="227" Height="25" RangeStartSelected="20" RangeStopSelected="50"/>
 
                             <Menu  VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" >
@@ -322,7 +365,13 @@
                         <Controls:ProgressIndicator ProgressColour="{StaticResource AccentColorBrush}"
                                                     Height="6"
                                                     Width="600" />
-                        <Controls:ToggleSwitch HorizontalAlignment="Left" Width="150" Height="75"  Margin="0,10,0,0"  Header="WiFi rest state" />
+                        <Controls:ToggleSwitch 
+                            IsCheckedChanged="ToggleSwitch_OnIsCheckedChanged"
+                            HorizontalAlignment="Left" 
+                            Width="150" 
+                            Height="75" 
+                            Margin="0,10,0,0"
+                            Header="WiFi rest state" />
                         <Slider Margin="0,10,0,0"
                                 HorizontalAlignment="Left"
                                 Width="261.667"
@@ -402,6 +451,10 @@
                             <Button Content="Cancel" Style="{StaticResource CancelButton}" />-->
                         </StackPanel>
                     </Grid>
+                </TabItem>
+                <TabItem Header="Validation Examples">
+                    <views:ValidationExampleView x:Name="validationExample"
+                                                 DataContext="{Binding ValidationExampleViewModel, Mode=OneWay}" />
                 </TabItem>
                 <TabItem>
                     <StackPanel>

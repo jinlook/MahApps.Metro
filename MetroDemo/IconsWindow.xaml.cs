@@ -21,7 +21,7 @@ namespace MetroDemo
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var dict = new ResourceDictionary {Source = new Uri("pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml")};
+            var dict = new ResourceDictionary {Source = new Uri("pack://application:,,,/MVVMApps.Metro.Resources;component/Icons.xaml")};
             var foundIcons = dict
                 .OfType<DictionaryEntry>()
                 .Where(de => de.Value is Canvas)

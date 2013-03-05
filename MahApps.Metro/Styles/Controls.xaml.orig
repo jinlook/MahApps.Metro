@@ -5,6 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Scrollbars.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Buttons.xaml" />
 
+<<<<<<< HEAD
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
@@ -19,6 +20,23 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.TextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Tooltip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ToolBar.xaml" />
+=======
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.GroupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.PasswordBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ProgressBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Label.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Tooltip.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ToolBar.xaml" />
+>>>>>>> 585f0c45c5a1dce12c5174808626d5fad2b79109
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="ValidationToolTipTemplate">
@@ -82,6 +100,7 @@
     <Style TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" />
     <Style TargetType="Slider" BasedOn="{StaticResource MetroSlider}" />
     <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}" />
+    <Style TargetType="Label" BasedOn="{StaticResource MetroLabel}" />
     <Style TargetType="TabItem" BasedOn="{StaticResource MetroTabItem}"  />
     <Style TargetType="TabControl" BasedOn="{StaticResource MetroTabControl}" />
     <Style TargetType="ScrollBar" BasedOn="{StaticResource MetroScrollBar}" />
@@ -95,15 +114,11 @@
     <Style TargetType="MenuItem" BasedOn="{StaticResource MetroMenuItem}" />
     <Style TargetType="Menu" BasedOn="{StaticResource StandardMenu}" />
     <Style TargetType="ContextMenu" BasedOn="{StaticResource MetroContextMenu}" />
-<<<<<<< HEAD
     <!--<Style TargetType="GroupBox" BasedOn="{StaticResource MetroGroupBox}" />-->
-=======
-    <Style TargetType="GroupBox" BasedOn="{StaticResource MetroGroupBox}" />
     <Style TargetType="ListBox" BasedOn="{StaticResource MetroListBox}" />
     <Style TargetType="ListBoxItem" BasedOn="{StaticResource MetroListBoxItem}" />
     <Style TargetType="ListView" BasedOn="{StaticResource MetroListView}" />
     <Style TargetType="ListViewItem" BasedOn="{StaticResource MetroListViewItem}" />
->>>>>>> 0631a6b9162e074433e0b8875a42bea6ef3cc1ff
 
     <Style TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
