@@ -424,14 +424,7 @@
   -->
   <Target Name="BeforeBuild">
     <!-- if provided, ensure it's a trimmed hash -->
-    <PropertyGroup>
-      <GitCommitHash Condition=" '$(GitCommitHash)' != '' ">$(GitCommitHash.Substring(0, 7))</GitCommitHash>
-    </PropertyGroup>
-    <!-- if not provided, call git.exe to get HEAD commit -->
-    <GitVersion LocalPath="$(SolutionDir)" Condition=" '$(GitCommitHash)' == '' ">
-      <Output TaskParameter="CommitHash" PropertyName="GitCommitHash" />
-    </GitVersion>
-    <AssemblyInfo CodeLanguage="CS" OutputFile="$(ProjectDir)\Properties\CommonAssemblyInfo.cs" AssemblyTitle="MahApps.Metro" AssemblyCompany="MahApps" AssemblyProduct="MahApps.Metro" AssemblyCopyright="Copyright © MahApps 2013" ComVisible="false" AssemblyVersion="$(Version)" AssemblyFileVersion="$(Version)" AssemblyInformationalVersion="Built from hash '$(GitCommitHash)'" />
+    <AssemblyInfo CodeLanguage="CS" OutputFile="$(ProjectDir)\Properties\CommonAssemblyInfo.cs" AssemblyTitle="MVVMApps.Metro" AssemblyCompany="MVVMApps" AssemblyProduct="MVVMApps.Metro" AssemblyCopyright="Copyright © MVVMApps 2013" ComVisible="false" AssemblyVersion="$(Version)" AssemblyFileVersion="$(Version)" AssemblyInformationalVersion="Built from hash " />
   </Target>
   <Target Name="AfterCompile" />
 </Project>
