@@ -14,8 +14,12 @@
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Panorama.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/ProgressRing.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/RangeSlider.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroAnimatedSingleRowTabControl.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroTabControl.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroTabItem.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Tile.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/TransitioningContentControl.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Glow.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

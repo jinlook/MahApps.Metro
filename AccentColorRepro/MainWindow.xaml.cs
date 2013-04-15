@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using MVVMApps.Metro;
 
 namespace AccentColorRepro

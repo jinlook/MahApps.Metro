@@ -2,10 +2,10 @@
 using System.Windows;
 <<<<<<< HEAD
 using MVVMApps.Metro;
-using MVVMApps.Metro.Controls;
 =======
+using System.Windows.Media;
 using MahApps.Metro;
->>>>>>> f9e49ace1c45b9991e02b86c38259a6d7a2ae8af
+>>>>>>> b3edbec6ecdab60da9ffa3c34436e373a37276d5
 
 namespace AccentColorRepro
 {
