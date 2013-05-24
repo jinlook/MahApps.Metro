@@ -18,12 +18,15 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.TabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.TextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Label.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Tooltip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ToolBar.xaml" />
 =======
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Calendar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.DatePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.PasswordBox.xaml" />
@@ -36,7 +39,7 @@
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Label.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Tooltip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ToolBar.xaml" />
->>>>>>> 585f0c45c5a1dce12c5174808626d5fad2b79109
+>>>>>>> 138178de6e2f5c008cc74f89ed6c856b3de11de7
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="ValidationToolTipTemplate">
@@ -119,7 +122,10 @@
     <Style TargetType="ListBoxItem" BasedOn="{StaticResource MetroListBoxItem}" />
     <Style TargetType="ListView" BasedOn="{StaticResource MetroListView}" />
     <Style TargetType="ListViewItem" BasedOn="{StaticResource MetroListViewItem}" />
-
+    <Style TargetType="DatePicker" BasedOn="{StaticResource MetroDatePicker}"/>
+    <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource MetroDatePickerTextBox}"/>
+    <Style TargetType="Calendar" BasedOn="{StaticResource MetroCalendar}" />
+    
     <Style TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>
