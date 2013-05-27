@@ -9,8 +9,9 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.DatePicker.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.DataGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.GroupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListBox.xaml" />    
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ProgressBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.RadioButton.xaml" />
@@ -98,7 +99,7 @@
     <Style TargetType="MenuItem" BasedOn="{StaticResource MetroMenuItem}" />
     <Style TargetType="Menu" BasedOn="{StaticResource StandardMenu}" />
     <Style TargetType="ContextMenu" BasedOn="{StaticResource MetroContextMenu}" />
-    <!--<Style TargetType="GroupBox" BasedOn="{StaticResource MetroGroupBox}" />-->
+    <Style TargetType="GroupBox" BasedOn="{StaticResource MetroGroupBox}" />
     <Style TargetType="ListBox" BasedOn="{StaticResource MetroListBox}" />
     <Style TargetType="ListBoxItem" BasedOn="{StaticResource MetroListBoxItem}" />
     <Style TargetType="ListView" BasedOn="{StaticResource MetroListView}" />
@@ -106,7 +107,8 @@
     <Style TargetType="DatePicker" BasedOn="{StaticResource MetroDatePicker}"/>
     <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource MetroDatePickerTextBox}"/>
     <Style TargetType="Calendar" BasedOn="{StaticResource MetroCalendar}" />
-    
+    <Style TargetType="DataGrid" BasedOn="{StaticResource MetroDataGrid}" />
+
     <Style TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>

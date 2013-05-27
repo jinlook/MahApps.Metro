@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Colours.xaml" />
@@ -15,11 +15,16 @@
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Panorama.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/ProgressRing.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/RangeSlider.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroAnimatedSingleRowTabControl.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroTabControl.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroTabItem.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Tile.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/TransitioningContentControl.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Glow.xaml" />
 =======
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/AppBarButton.xaml" />
+        <ResourceDictionary Source="/MahApps.Metro;component/Themes/FlipView.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Flyout.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroContentControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroImage.xaml" />
@@ -36,6 +41,6 @@
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/TransitioningContentControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Glow.xaml" />
->>>>>>> b3edbec6ecdab60da9ffa3c34436e373a37276d5
+>>>>>>> 051433abd2d0d0098519693166f1b3d15c3fbff7
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

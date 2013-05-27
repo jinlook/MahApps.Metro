@@ -4,13 +4,14 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Scrollbars.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Buttons.xaml" />
-
-<<<<<<< HEAD
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Calendar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.DatePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.DataGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.GroupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListBox.xaml" />    
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ProgressBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.RadioButton.xaml" />
@@ -21,25 +22,6 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Label.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Tooltip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ToolBar.xaml" />
-=======
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Calendar.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.CheckBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ComboBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.DatePicker.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.GroupBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ListBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.PasswordBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ProgressBar.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.RadioButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Slider.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TabControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBlock.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Label.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Tooltip.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ToolBar.xaml" />
->>>>>>> 138178de6e2f5c008cc74f89ed6c856b3de11de7
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="ValidationToolTipTemplate">
@@ -125,7 +107,8 @@
     <Style TargetType="DatePicker" BasedOn="{StaticResource MetroDatePicker}"/>
     <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource MetroDatePickerTextBox}"/>
     <Style TargetType="Calendar" BasedOn="{StaticResource MetroCalendar}" />
-    
+    <Style TargetType="DataGrid" BasedOn="{StaticResource MetroDataGrid}" />
+
     <Style TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>
