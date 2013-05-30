@@ -41,6 +41,10 @@ namespace MVVMApps.Metro.Controls
         private Storyboard ShowControlStoryboard = null;
 
         private EventHandler HideControlStoryboard_CompletedHandler = null;
+        /// <summary>
+        /// To counteract the double Loaded event issue.
+        /// </summary>
+        private bool loaded = false;
 
         static FlipView()
         {
@@ -49,7 +53,17 @@ namespace MVVMApps.Metro.Controls
         public FlipView()
         {
             this.Unloaded += FlipView_Unloaded;
+            this.Loaded += FlipView_Loaded;
         }
+        ~FlipView()
+        {
+            Dispatcher.Invoke(new EmptyDelegate(() =>
+            {
+                this.Loaded -= FlipView_Loaded;
+            }));
+        }
+
+        private delegate void EmptyDelegate();
 
         void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -83,33 +97,22 @@ namespace MVVMApps.Metro.Controls
                 forwardButton.Visibility = System.Windows.Visibility.Hidden;
             }
         }
-
-        void FlipView_Unloaded(object sender, RoutedEventArgs e)
+        void FlipView_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Unloaded -= FlipView_Unloaded;
-            this.SelectionChanged -= FlipView_SelectionChanged;
+            /* Loaded event fires twice if its a child of a TabControl.
+             * Once because the TabControl seems to initiali(z|s)e everything.
+             * And a second time when the Tab (housing the FlipView) is switched to. */
 
-            backButton.Click -= backButton_Click;
-            forwardButton.Click -= forwardButton_Click;
+            if (backButton == null) //OnApplyTemplate hasn't been called yet.
+                ApplyTemplate();
 
-            if (HideControlStoryboard_CompletedHandler != null)
-                HideControlStoryboard.Completed -= HideControlStoryboard_CompletedHandler;
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            presenter = this.Template.FindName(PART_Presenter, this) as TransitioningContentControl;
-            backButton = this.Template.FindName(PART_BackButton, this) as Button;
-            forwardButton = this.Template.FindName(PART_ForwardButton, this) as Button;
-            bannerGrid = this.Template.FindName(PART_BannerGrid, this) as Grid;
-            bannerLabel = this.Template.FindName(PART_BannerLabel, this) as Label;
+            if (loaded) return; //Counteracts the double 'Loaded' event issue.
 
             backButton.Click += backButton_Click;
             forwardButton.Click += forwardButton_Click;
 
             this.SelectionChanged += FlipView_SelectionChanged;
+            this.KeyDown += FlipView_KeyDown;
 
             ShowBannerStoryboard = ((Storyboard)this.Template.Resources["ShowBannerStoryboard"]).Clone();
             HideBannerStoryboard = ((Storyboard)this.Template.Resources["HideBannerStoryboard"]).Clone();
@@ -117,10 +120,62 @@ namespace MVVMApps.Metro.Controls
             ShowControlStoryboard = ((Storyboard)this.Template.Resources["ShowControlStoryboard"]).Clone();
             HideControlStoryboard = ((Storyboard)this.Template.Resources["HideControlStoryboard"]).Clone();
 
+            SelectedIndex = 0;
+
             DetectControlButtonsStatus();
 
-
             ShowBanner();
+
+            loaded = true;
+        }
+        void FlipView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            this.Unloaded -= FlipView_Unloaded;
+            this.SelectionChanged -= FlipView_SelectionChanged;
+
+            this.KeyDown -= FlipView_KeyDown;
+            backButton.Click -= backButton_Click;
+            forwardButton.Click -= forwardButton_Click;
+
+            if (HideControlStoryboard_CompletedHandler != null)
+                HideControlStoryboard.Completed -= HideControlStoryboard_CompletedHandler;
+
+            loaded = false;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            presenter = GetTemplateChild(PART_Presenter) as TransitioningContentControl;
+            backButton = GetTemplateChild(PART_BackButton) as Button;
+            forwardButton = GetTemplateChild(PART_ForwardButton) as Button;
+            bannerGrid = GetTemplateChild(PART_BannerGrid) as Grid;
+            bannerLabel = GetTemplateChild(PART_BannerLabel) as Label;
+        }
+
+        void FlipView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)
+            {
+                GoBack();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Right)
+            {
+                GoForward();
+                e.Handled = true;
+            }
+
+            if (e.Handled)
+                this.Focus();
+        }
+
+        protected override void OnItemsSourceChanged(System.Collections.IEnumerable oldValue, System.Collections.IEnumerable newValue)
+        {
+            base.OnItemsSourceChanged(oldValue, newValue);
+
+            SelectedIndex = 0;
         }
 
         void forwardButton_Click(object sender, RoutedEventArgs e)
@@ -151,6 +206,23 @@ namespace MVVMApps.Metro.Controls
             }
         }
 
+        public void ShowControlButtons()
+        {
+            ExecuteWhenLoaded(this, () =>
+                {
+                    backButton.Visibility = System.Windows.Visibility.Visible;
+                    forwardButton.Visibility = System.Windows.Visibility.Visible;
+                });
+        }
+        public void HideControlButtons()
+        {
+            ExecuteWhenLoaded(this, () =>
+                {
+                    backButton.Visibility = System.Windows.Visibility.Hidden;
+                    forwardButton.Visibility = System.Windows.Visibility.Hidden;
+                });
+        }
+
         private void ShowBanner()
         {
             if (IsBannerEnabled)
@@ -164,44 +236,43 @@ namespace MVVMApps.Metro.Controls
                 bannerGrid.BeginStoryboard(HideBannerStoryboard);
         }
 
-        private string _lastBannerText = null;
         public static readonly DependencyProperty BannerTextProperty =
-            DependencyProperty.Register("BannerText", typeof(string), typeof(FlipView), new PropertyMetadata("Banner", new PropertyChangedCallback((d, e) =>
+            DependencyProperty.Register("BannerText", typeof(string), typeof(FlipView), new FrameworkPropertyMetadata("Banner", FrameworkPropertyMetadataOptions.AffectsRender ,new PropertyChangedCallback((d, e) =>
             {
-                if (e.OldValue != e.NewValue)
-                    ExecuteWhenLoaded(((FlipView)d), () =>
-                        ((FlipView)d).ChangeBannerText());
+                ExecuteWhenLoaded(((FlipView)d), () =>
+                    ((FlipView)d).ChangeBannerText((string)e.NewValue));
             })));
 
         public string BannerText
         {
             get { return (string)GetValue(BannerTextProperty); }
-            set
-            {
-                if (IsBannerEnabled)
-                    ChangeBannerText(value);
-                else
-                    SetValue(BannerTextProperty, value);
-
-            }
+            set { SetValue(BannerTextProperty, value); }
         }
 
         private void ChangeBannerText(string value = null)
         {
             if (IsBannerEnabled)
             {
+                var newValue = value != null ? value : BannerText;
+
+                if (newValue == null) return;
+
                 if (HideControlStoryboard_CompletedHandler != null)
                     HideControlStoryboard.Completed -= HideControlStoryboard_CompletedHandler;
 
                 HideControlStoryboard_CompletedHandler = new EventHandler((sender, e) =>
                 {
-                    SetValue(BannerTextProperty, value);
+                    try
+                    {
+                        HideControlStoryboard.Completed -= HideControlStoryboard_CompletedHandler;
 
-                    HideControlStoryboard.Completed -= HideControlStoryboard_CompletedHandler;
+                        bannerLabel.Content = newValue;
 
-                    bannerLabel.Content = value != null ? value : BannerText;
-
-                    bannerLabel.BeginStoryboard(ShowControlStoryboard, HandoffBehavior.SnapshotAndReplace);
+                        bannerLabel.BeginStoryboard(ShowControlStoryboard, HandoffBehavior.SnapshotAndReplace);
+                    }
+                    catch (Exception)
+                    {
+                    }
                 });
 
 
@@ -211,34 +282,23 @@ namespace MVVMApps.Metro.Controls
             }
             else
                 ExecuteWhenLoaded(this, () =>
-                    {
-                        bannerLabel.Content = value != null ? value : BannerText;
-                    });
+                {
+                    bannerLabel.Content = value != null ? value : BannerText;
+                });
         }
 
         public static readonly DependencyProperty IsBannerEnabledProperty =
             DependencyProperty.Register("IsBannerEnabled", typeof(bool), typeof(FlipView), new UIPropertyMetadata(true, new PropertyChangedCallback((d, e) =>
+            {
+                var flipview = ((FlipView)d);
+
+                if (!flipview.IsLoaded)
                 {
-                    var flipview = ((FlipView)d);
-
-                    if (!flipview.IsLoaded)
+                    //wait to be loaded?
+                    ExecuteWhenLoaded(flipview, () =>
                     {
-                        //wait to be loaded?
-                        ExecuteWhenLoaded(flipview, () =>
-                            {
-                                flipview.ApplyTemplate();
+                        flipview.ApplyTemplate();
 
-                                if ((bool)e.NewValue)
-                                {
-                                    flipview.ChangeBannerText(flipview.BannerText);
-                                    flipview.ShowBanner();
-                                }
-                                else
-                                    flipview.HideBanner();
-                            });
-                    }
-                    else
-                    {
                         if ((bool)e.NewValue)
                         {
                             flipview.ChangeBannerText(flipview.BannerText);
@@ -246,8 +306,19 @@ namespace MVVMApps.Metro.Controls
                         }
                         else
                             flipview.HideBanner();
+                    });
+                }
+                else
+                {
+                    if ((bool)e.NewValue)
+                    {
+                        flipview.ChangeBannerText(flipview.BannerText);
+                        flipview.ShowBanner();
                     }
-                })));
+                    else
+                        flipview.HideBanner();
+                }
+            })));
 
         public bool IsBannerEnabled
         {
@@ -261,14 +332,20 @@ namespace MVVMApps.Metro.Controls
         private static void ExecuteWhenLoaded(FlipView flipview, Action body)
         {
             if (flipview.IsLoaded)
-                body();
+                System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke(new EmptyDelegate(() =>
+                {
+                    body();
+                }));
             else
             {
                 RoutedEventHandler handler = null;
                 handler = new RoutedEventHandler((o, a) =>
                 {
                     flipview.Loaded -= handler;
-                    body();
+                    System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke(new EmptyDelegate(() =>
+                        {
+                            body();
+                        }));
                 });
 
                 flipview.Loaded += handler;
