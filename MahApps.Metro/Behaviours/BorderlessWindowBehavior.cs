@@ -7,6 +7,11 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using MVVMApps.Metro.Controls;
 using MVVMApps.Metro.Native;
+#if NET_4
+using Microsoft.Windows.Shell;
+#else
+using System.Windows.Shell;
+#endif
 
 namespace MVVMApps.Metro.Behaviours
 {
@@ -14,14 +19,22 @@ namespace MVVMApps.Metro.Behaviours
     {
         public static readonly DependencyProperty ResizeWithGripProperty = DependencyProperty.Register("ResizeWithGrip", typeof(bool), typeof(BorderlessWindowBehavior), new PropertyMetadata(true));
         public static readonly DependencyProperty AutoSizeToContentProperty = DependencyProperty.Register("AutoSizeToContent", typeof(bool), typeof(BorderlessWindowBehavior), new PropertyMetadata(false));
-        public static readonly DependencyProperty EnableDWMDropShadowProperty =
-            DependencyProperty.Register("EnableDWMDropShadow", typeof(bool), typeof(BorderlessWindowBehavior), new PropertyMetadata(false, new PropertyChangedCallback((obj, args) =>
+        public static readonly DependencyProperty EnableDWMDropShadowProperty = DependencyProperty.Register("EnableDWMDropShadow", typeof(bool), typeof(BorderlessWindowBehavior), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty AllowsTransparencyProperty =
+            DependencyProperty.Register("AllowsTransparency", typeof(bool), typeof(BorderlessWindowBehavior), new PropertyMetadata(true, new PropertyChangedCallback((obj, args) =>
             {
                 var behaviorClass = ((BorderlessWindowBehavior)obj);
 
                 if (behaviorClass.AssociatedObject != null)
-                    behaviorClass.AssociatedObject.AllowsTransparency = !(bool)args.NewValue;
+                    behaviorClass.AssociatedObject.AllowsTransparency = (bool)args.NewValue;
             })));
+
+        public bool AllowsTransparency
+        {
+            get { return (bool)GetValue(AllowsTransparencyProperty); }
+            set { SetValue(AllowsTransparencyProperty, value); }
+        }
 
         public bool EnableDWMDropShadow
         {
@@ -84,8 +97,9 @@ namespace MVVMApps.Metro.Behaviours
                 AssociatedObject.SourceInitialized += AssociatedObject_SourceInitialized;
 
             AssociatedObject.WindowStyle = WindowStyle.None;
-            AssociatedObject.AllowsTransparency = !EnableDWMDropShadow;
+            AssociatedObject.AllowsTransparency = AllowsTransparency;
             AssociatedObject.StateChanged += AssociatedObjectStateChanged;
+            AssociatedObject.SetValue(WindowChrome.GlassFrameThicknessProperty, new Thickness(-1));
 
             if (AssociatedObject is MetroWindow)
             {
@@ -97,6 +111,10 @@ namespace MVVMApps.Metro.Behaviours
                                                    Border = ancestors;
                                                    if (ShouldHaveBorder())
                                                        AddBorder();
+                                                   var titleBar = window.GetPart<Grid>("PART_TitleBar");
+                                                   titleBar.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
+                                                   var windowCommands = window.GetPart<ContentPresenter>("PART_WindowCommands");
+                                                   windowCommands.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
                                                };
 
                 switch (AssociatedObject.ResizeMode)
@@ -170,6 +188,8 @@ namespace MVVMApps.Metro.Behaviours
                 var x = ignoreTaskBar ? monitorInfo.rcMonitor.left : monitorInfo.rcWork.left;
                 var y = ignoreTaskBar ? monitorInfo.rcMonitor.top : monitorInfo.rcWork.top;
                 var cx = ignoreTaskBar ? Math.Abs(monitorInfo.rcMonitor.right - x) : Math.Abs(monitorInfo.rcWork.right - x);
+
+                // Pull off one pixel as a taskbar set to auto-hide wouldn't reappear otherwise
                 var cy = ignoreTaskBar ? Math.Abs(monitorInfo.rcMonitor.bottom - y) : Math.Abs(monitorInfo.rcWork.bottom - y - 1);
                 UnsafeNativeMethods.SetWindowPos(_mHWND, new IntPtr(-2), x, y, cx, cy, 0x0040);
             }
@@ -260,25 +280,22 @@ namespace MVVMApps.Metro.Behaviours
                     break;
                 case Constants.WM_NCPAINT:
                     {
-                        if (!ShouldHaveBorder())
+                        if (ShouldHaveBorder())
                         {
-                            MetroWindow w = AssociatedObject as MetroWindow;
-                            if (!(w != null && w.GlowBrush != null))
+                            this.AddBorder();
+                        }
+                        else if (EnableDWMDropShadow)
+                        {
+                            var metroWindow = AssociatedObject as MetroWindow;
+                            if (!(metroWindow != null && metroWindow.GlowBrush != null))
                             {
                                 var val = 2;
                                 UnsafeNativeMethods.DwmSetWindowAttribute(_mHWND, 2, ref val, 4);
                                 var m = new MARGINS { bottomHeight = 1, leftWidth = 1, rightWidth = 1, topHeight = 1 };
                                 UnsafeNativeMethods.DwmExtendFrameIntoClientArea(_mHWND, ref m);
                             }
+                        }
 
-                            // i think we don't need this, cause after minimizing on taskbar, no border is shown
-                            //if (Border != null)
-                            //Border.BorderThickness = new Thickness(0);
-                        }
-                        else
-                        {
-                            AddBorder();
-                        }
                         handled = true;
                     }
                     break;

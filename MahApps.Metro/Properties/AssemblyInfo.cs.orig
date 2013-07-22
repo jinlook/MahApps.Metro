@@ -1,26 +1,21 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Markup;
 
-<<<<<<< HEAD
-[assembly: AssemblyTitle("MVVMApps.Metro")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MVVMApps")]
-[assembly: AssemblyProduct("MVVMApps.Metro")]
-[assembly: AssemblyCopyright("Copyright © MVVMApps 2012")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: ComVisible(false)]
+
+
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
-[assembly: AssemblyVersion("0.10.0.0")]
-[assembly: AssemblyFileVersion("0.10.0.0")]
+
+<<<<<<< HEAD
 [assembly: XmlnsDefinition("http://metro.MVVMApps.com/winfx/xaml/shared", "MVVMApps.Metro.Behaviours")]
 [assembly: XmlnsDefinition("http://metro.MVVMApps.com/winfx/xaml/shared", "MVVMApps.Metro.Converters")]
 [assembly: XmlnsDefinition("http://metro.MVVMApps.com/winfx/xaml/controls", "MVVMApps.Metro.Controls")]
 =======
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
-
 [assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/shared", "MahApps.Metro.Behaviours")]
 [assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/shared", "MahApps.Metro.Converters")]
 [assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/controls", "MahApps.Metro.Controls")]
->>>>>>> b3edbec6ecdab60da9ffa3c34436e373a37276d5
+
+[assembly: AssemblyVersion("0.0.0.999")]
+[assembly: AssemblyFileVersion("0.0.0.999")]
+>>>>>>> f1ef851a7fee14a157c40add8aa9738fc86c9e47

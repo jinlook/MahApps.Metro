@@ -6,6 +6,7 @@
 
 <<<<<<< HEAD
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/AppBarButton.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/FlipView.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Flyout.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroContentControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroImage.xaml" />
@@ -26,6 +27,7 @@
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/AppBarButton.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/FlipView.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Flyout.xaml" />
+        <ResourceDictionary Source="/MahApps.Metro;component/Themes/FlyoutsControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroContentControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroImage.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroProgressBar.xaml" />
@@ -41,6 +43,6 @@
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/TransitioningContentControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Glow.xaml" />
->>>>>>> 051433abd2d0d0098519693166f1b3d15c3fbff7
+>>>>>>> f1ef851a7fee14a157c40add8aa9738fc86c9e47
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
