@@ -1,4 +1,4 @@
-﻿namespace MahApps.Metro.Native
+﻿namespace MVVMApps.Metro.Native
 {
     public enum ABEdge
     {
