@@ -15,8 +15,6 @@ namespace MVVMApps.Metro.Controls
 
         internal RangeSelectionChangedEventArgs(RangeSlider slider)
             : this(slider.RangeStartSelected, slider.RangeStopSelected)
-        {
-            
-        }
+        { }
     }
 }

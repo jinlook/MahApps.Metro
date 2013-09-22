@@ -84,6 +84,7 @@
     <Compile Include="Controls\Position.cs" />
     <Compile Include="Controls\SafeRaise.cs" />
     <Compile Include="Controls\ScrollViewerOffsetMediator.cs" />
+    <Compile Include="Converters\BackgroundToForegroundConverter.cs" />
     <Compile Include="Converters\OffOnConverter.cs" />
     <Compile Include="Controls\Panorama.cs" />
     <Compile Include="Controls\PanoramaGroup.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Converters\PanoramaGroupWidthConverter.cs" />
     <Compile Include="Converters\PanoramaGroupHeightConverter.cs" />
     <Compile Include="Converters\ThicknessToDoubleConverter.cs" />
+    <Compile Include="Converters\TreeViewMarginConverter.cs" />
     <Compile Include="Models\Win32\GWL.cs" />
     <Compile Include="Models\Win32\HitTestValues.cs" />
     <Compile Include="Models\Win32\NativeMethods.cs" />
@@ -149,6 +151,10 @@
     <Page Include="Controls\GlowWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Clean\CleanWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls.AnimatedSingleRowTabControl.xaml">
       <SubType>Designer</SubType>
@@ -227,6 +233,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <DependentUpon>Controls.xaml</DependentUpon>
+    </Page>
+    <Page Include="Styles\Controls.TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>Controls.xaml</DependentUpon>
+    </Page>
+    <Page Include="Styles\FlatSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\VS\Button.xaml">
       <SubType>Designer</SubType>

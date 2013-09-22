@@ -49,7 +49,6 @@ namespace MVVMApps.Metro.Controls
             bar.ResetStoryboard(actualWidth);
         }
 
-
         private void ResetStoryboard(double width)
         {
             
