@@ -122,7 +122,7 @@
                             </ToolTipService.ToolTip>
                         </Ellipse>
                         <Ellipse x:Name="Checked1" Fill="{DynamicResource HighlightBrush}" Opacity="0" Width="10" Height="10" />
-                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                         <Ellipse x:Name="disabled" Opacity="0" StrokeThickness="1" Fill="{DynamicResource SemiTransparentWhiteBrush}" Width="18" Height="18" />
                     </Grid>
                 </ControlTemplate>
