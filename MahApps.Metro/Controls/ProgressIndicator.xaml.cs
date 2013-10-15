@@ -12,7 +12,7 @@ namespace MVVMApps.Metro.Controls
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var percentage = Double.Parse(parameter.ToString(), new CultureInfo("en-US"));
+            var percentage = Double.Parse(parameter.ToString(), System.Globalization.CultureInfo.InvariantCulture);
             return ((double) value)*percentage;
         }
 
