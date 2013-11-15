@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MVVMApps.Metro.Controls;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace MVVMApps.Metro
@@ -10,8 +12,8 @@ namespace MVVMApps.Metro
         private static readonly ResourceDictionary LightResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseLight.xaml") };
         private static readonly ResourceDictionary DarkResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseDark.xaml") };
 
-        private static IEnumerable<Accent> _accents;
-        public static IEnumerable<Accent> DefaultAccents
+        private static IList<Accent> _accents;
+        public static IList<Accent> DefaultAccents
         {
             get
             {
@@ -44,21 +46,76 @@ namespace MVVMApps.Metro
             }
         }
 
+        /// <summary>
+        /// change accent and theme for the hole application
+        /// </summary>
         public static void ChangeTheme(Application app, Accent accent, Theme theme)
         {
-            ChangeTheme(app.Resources, accent, theme);
+            var oldTheme = DetectTheme(app);
+            ChangeTheme(app.Resources, oldTheme, accent, theme);
         }
 
+        /// <summary>
+        /// change accent and theme for the given window
+        /// </summary>
         public static void ChangeTheme(Window window, Accent accent, Theme theme)
         {
-            ChangeTheme(window.Resources, accent, theme);
+            var oldTheme = DetectTheme(window);
+            ChangeTheme(window.Resources, oldTheme, accent, theme);
+        }
+
+        private static void ChangeTheme(ResourceDictionary resources, Tuple<Theme, Accent> oldThemeInfo, Accent accent, Theme newTheme)
+        {
+            if (oldThemeInfo != null)
+            {
+                var oldAccent = oldThemeInfo.Item2;
+                if (oldAccent != null && oldAccent.Name != accent.Name)
+                {
+                    var accentResource = resources.MergedDictionaries.FirstOrDefault(d => d.Source == oldAccent.Resources.Source);
+                    if (accentResource != null) {
+                        var ok = resources.MergedDictionaries.Remove(accentResource);
+                        // really need this???
+                        foreach (DictionaryEntry r in accentResource)
+                        {
+                            if (resources.Contains(r.Key))
+                                resources.Remove(r.Key);
+                        }
+
+                        resources.MergedDictionaries.Add(accent.Resources);
+                    }
+                }
+
+                var oldTheme = oldThemeInfo.Item1;
+                if (oldTheme != null && oldTheme != newTheme)
+                {
+                    var oldThemeResource = (oldTheme == Theme.Light) ? LightResource : DarkResource;
+                    var md = resources.MergedDictionaries.FirstOrDefault(d => d.Source == oldThemeResource.Source);
+                    if (md != null)
+                    {
+                        var ok = resources.MergedDictionaries.Remove(md);
+                        var newThemeResource = (newTheme == Theme.Light) ? LightResource : DarkResource;
+                        // really need this???
+                        foreach (DictionaryEntry r in oldThemeResource)
+                        {
+                            if (resources.Contains(r.Key))
+                                resources.Remove(r.Key);
+                        }
+
+                        resources.MergedDictionaries.Add(newThemeResource);
+                    }
+                }
+            }
+            else
+            {
+                ChangeTheme(resources, accent, newTheme);
+            }
         }
 
         public static void ChangeTheme(ResourceDictionary r, Accent accent, Theme theme)
         {
             var themeResource = (theme == Theme.Light) ? LightResource : DarkResource;
-            ApplyResourceDictionary(themeResource, r);
             ApplyResourceDictionary(accent.Resources, r);
+            ApplyResourceDictionary(themeResource, r);
         }
 
         private static void ApplyResourceDictionary(ResourceDictionary newRd, ResourceDictionary oldRd)
@@ -73,24 +130,41 @@ namespace MVVMApps.Metro
         }
 
         /// <summary>
-        /// Scans a Window's resources and returns it's accent and theme.
+        /// Scans the window resources and returns it's accent and theme.
         /// </summary>
-        /// <param name="window">The Window to check.</param>
-        /// <returns></returns>
-        public static Tuple<Theme, Accent> DetectTheme(MVVMApps.Metro.Controls.MetroWindow window)
+        public static Tuple<Theme, Accent> DetectTheme(Window window)
         {
             if (window == null) throw new ArgumentNullException("window");
+
+            return DetectTheme(window.Resources);
+        }
+
+        /// <summary>
+        /// Scans the application resources and returns it's accent and theme.
+        /// </summary>
+        public static Tuple<Theme, Accent> DetectTheme(Application app)
+        {
+            if (app == null) throw new ArgumentNullException("app");
+            
+            return DetectTheme(app.Resources);
+        }
+
+        /// <summary>
+        /// Scans a resources and returns it's accent and theme.
+        /// </summary>
+        /// <param name="window">The resource to check.</param>
+        private static Tuple<Theme, Accent> DetectTheme(ResourceDictionary resources)
+        {
+            if (resources == null) throw new ArgumentNullException("resources");
 
             Theme currentTheme = Theme.Light;
             ResourceDictionary themeDictionary = null;
             Tuple<Theme, Accent> detectedAccentTheme = null;
 
 
-            if (DetectThemeFromResources(ref currentTheme, ref themeDictionary, window.Resources))
-            {
-                detectedAccentTheme = GetThemeFromResources(currentTheme, window.Resources);
-
-                return new Tuple<Theme, Accent>(detectedAccentTheme.Item1, detectedAccentTheme.Item2);
+            if (DetectThemeFromResources(ref currentTheme, ref themeDictionary, resources)) {
+                if (GetThemeFromResources(currentTheme, resources, ref detectedAccentTheme))
+                    return new Tuple<Theme, Accent>(detectedAccentTheme.Item1, detectedAccentTheme.Item2);
             }
 
             return null;
@@ -119,29 +193,36 @@ namespace MVVMApps.Metro
                     enumerator.Dispose();
                     return true;
                 }
+
+                if (DetectThemeFromResources(ref detectedTheme, ref themeRd, currentRd)) {
+                    return true;
+                }
             }
 
             enumerator.Dispose();
             return false;
         }
-        internal static Tuple<Theme, Accent> GetThemeFromResources(Theme presetTheme, ResourceDictionary dict)
+        
+        internal static bool GetThemeFromResources(Theme presetTheme, ResourceDictionary dict, ref Tuple<Theme, Accent> detectedAccentTheme)
         {
-            Theme currentTheme = 0;
+            Theme currentTheme = presetTheme;
             Accent currentAccent = null;
 
-            currentTheme = presetTheme;
+            Accent matched = null;
+            if ((matched = ((List<Accent>)DefaultAccents).Find(x => x.Resources.Source == dict.Source)) != null)
+            {
+                currentAccent = matched;
+                detectedAccentTheme = Tuple.Create<Theme, Accent>(currentTheme, currentAccent);
+                return true;
+            }
 
             foreach (ResourceDictionary rd in dict.MergedDictionaries)
             {
-                Accent matched = null;
-                if ((matched = ((List<Accent>)_accents).Find(x => x.Resources.Source == rd.Source)) != null)
-                {
-                    currentAccent = matched;
-                    break;
-                }
+                if (GetThemeFromResources(presetTheme, rd, ref detectedAccentTheme))
+                    return true;
             }
 
-            return Tuple.Create<Theme, Accent>(currentTheme, currentAccent);
+            return false;
         }
     }
 }

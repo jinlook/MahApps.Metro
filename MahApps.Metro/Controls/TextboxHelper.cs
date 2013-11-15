@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -19,8 +20,34 @@ namespace MVVMApps.Metro.Controls
         public static readonly DependencyProperty ButtonContentProperty = DependencyProperty.RegisterAttached("ButtonContent", typeof(object), typeof(TextboxHelper), new FrameworkPropertyMetadata("r"));
         public static readonly DependencyProperty ButtonTemplateProperty = DependencyProperty.RegisterAttached("ButtonTemplate", typeof(ControlTemplate), typeof(TextboxHelper), new FrameworkPropertyMetadata(null));
         public static readonly DependencyProperty SelectAllOnFocusProperty = DependencyProperty.RegisterAttached("SelectAllOnFocus", typeof(bool), typeof(TextboxHelper), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty IsWaitingForDataProperty = DependencyProperty.RegisterAttached("IsWaitingForData", typeof(bool), typeof(TextboxHelper), new UIPropertyMetadata(false));
 
-        private static readonly DependencyProperty hasTextProperty = DependencyProperty.RegisterAttached("HasText", typeof(bool), typeof(TextboxHelper), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty FocusBorderBrushProperty = DependencyProperty.RegisterAttached("FocusBorderBrush", typeof(Brush), typeof(TextboxHelper), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty MouseOverBorderBrushProperty = DependencyProperty.RegisterAttached("MouseOverBorderBrush", typeof(Brush), typeof(TextboxHelper), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        private static readonly DependencyProperty HasTextProperty = DependencyProperty.RegisterAttached("HasText", typeof(bool), typeof(TextboxHelper), new FrameworkPropertyMetadata(false));
+
+        public Brush FocusBorderBrush
+        {
+            get { return (Brush)GetValue(FocusBorderBrushProperty); }
+            set { SetValue(FocusBorderBrushProperty, value); }
+        }
+
+        public Brush MouseOverBorderBrush
+        {
+            get { return (Brush)GetValue(MouseOverBorderBrushProperty); }
+            set { SetValue(MouseOverBorderBrushProperty, value); }
+        }
+
+        public static void SetIsWaitingForData(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsWaitingForDataProperty, value);
+        }
+        
+        public static bool GetIsWaitingForData(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsWaitingForDataProperty);
+        }
 
         public static void SetSelectAllOnFocus(DependencyObject obj, bool value)
         {
@@ -50,12 +77,12 @@ namespace MVVMApps.Metro.Controls
         private static void SetTextLength(DependencyObject obj, int value)
         {
             obj.SetValue(TextLengthProperty, value);
-            obj.SetValue(hasTextProperty, value >= 1);
+            obj.SetValue(HasTextProperty, value >= 1);
         }
 
         public bool HasText
         {
-            get { return (bool)GetValue(hasTextProperty); }
+            get { return (bool)GetValue(HasTextProperty); }
         }
 
         static void OnIsMonitoringChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -186,6 +213,43 @@ namespace MVVMApps.Metro.Controls
                 passbox.Loaded -= PassBoxLoaded;
                 passbox.Loaded += PassBoxLoaded;
             }
+            var combobox = d as ComboBox;
+            if (combobox != null)
+            {
+                // only one loaded event
+                combobox.Loaded -= ComboBoxLoaded;
+                combobox.Loaded += ComboBoxLoaded;
+            }
+        }
+
+        static void ComboBoxLoaded(object sender, RoutedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            if (comboBox == null || comboBox.Style == null)
+                return;
+
+            var template = comboBox.Template;
+            if (template == null)
+                return;
+
+            var dropDown = template.FindName("PART_DropDownToggle", comboBox) as ToggleButton;
+            if (dropDown == null || dropDown.Template == null)
+                return;
+
+            var button = dropDown.Template.FindName("PART_ClearText", dropDown) as Button;
+            if (button == null)
+                return;
+
+            if (GetClearTextButton(comboBox))
+            {
+                // only one event, because loaded event fires more than once, if the textbox is hosted in a tab item
+                button.Click -= ButtonClicked;
+                button.Click += ButtonClicked;
+            }
+            else
+            {
+                button.Click -= ButtonClicked;
+            }
         }
 
         static void PassBoxLoaded(object sender, RoutedEventArgs e)
@@ -244,7 +308,7 @@ namespace MVVMApps.Metro.Controls
         {
             var button = ((Button)sender);
             var parent = VisualTreeHelper.GetParent(button);
-            while (!(parent is TextBox || parent is PasswordBox))
+            while (!(parent is TextBox || parent is PasswordBox || parent is ComboBox))
             {
                 parent = VisualTreeHelper.GetParent(parent);
             }
@@ -256,7 +320,7 @@ namespace MVVMApps.Metro.Controls
             }
 
             if (GetClearTextButton(parent))
-            {
+            { 
                 if (parent is TextBox)
                 {
                     ((TextBox)parent).Clear();
@@ -264,6 +328,10 @@ namespace MVVMApps.Metro.Controls
                 else if (parent is PasswordBox)
                 {
                     ((PasswordBox)parent).Clear();
+                }
+                else if (parent is ComboBox)
+                {
+                    ((ComboBox)parent).SelectedItem = null;
                 }
             }
         }

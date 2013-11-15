@@ -145,6 +145,10 @@ namespace MVVMApps.Metro.Behaviours
                     {
                         windowCommands.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
                     }
+                    var windowButtonCommands = window.GetPart<ContentControl>("PART_WindowButtonCommands");
+                    if (windowButtonCommands != null) {
+                        windowButtonCommands.SetValue(WindowChrome.IsHitTestVisibleInChromeProperty, true);
+                    }
                 };
 
                 switch (AssociatedObject.ResizeMode)
@@ -316,7 +320,7 @@ namespace MVVMApps.Metro.Behaviours
             return !UnsafeNativeMethods.DwmIsCompositionEnabled();
         }
 
-        readonly SolidColorBrush _borderColour = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#808080"));
+        readonly SolidColorBrush _borderColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#808080"));
 
         private void AddBorder()
         {
@@ -324,7 +328,7 @@ namespace MVVMApps.Metro.Behaviours
                 return;
 
             Border.BorderThickness = new Thickness(1);
-            Border.BorderBrush = _borderColour;
+            Border.BorderBrush = _borderColor;
         }
 
         private void RemoveBorder()

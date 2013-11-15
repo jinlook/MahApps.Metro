@@ -1,13 +1,14 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+<<<<<<< HEAD
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Colours.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Fonts.xaml" />
 
-<<<<<<< HEAD
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/AppBarButton.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/FlipView.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Flyout.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/FlyoutsControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroContentControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroImage.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroProgressBar.xaml" />
@@ -24,7 +25,9 @@
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/TransitioningContentControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Glow.xaml" />
 =======
-        <ResourceDictionary Source="/MahApps.Metro;component/Themes/AppBarButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/FlipView.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Flyout.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/FlyoutsControl.xaml" />
@@ -36,6 +39,7 @@
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Panorama.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/ProgressRing.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/RangeSlider.xaml" />
+        <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroAnimatedTabControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroAnimatedSingleRowTabControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroTabControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/MetroTabItem.xaml" />
@@ -43,6 +47,6 @@
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/TransitioningContentControl.xaml" />
         <ResourceDictionary Source="/MahApps.Metro;component/Themes/Glow.xaml" />
->>>>>>> f1ef851a7fee14a157c40add8aa9738fc86c9e47
+>>>>>>> b953feeacacf606a303d5e6947d4bd8f8aff1bfa
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -18,6 +20,13 @@ namespace MVVMApps.Metro.Controls
         public static readonly DependencyProperty IsPinnableProperty = DependencyProperty.Register("IsPinnable", typeof(bool), typeof(Flyout), new PropertyMetadata(default(bool)));
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register("IsOpen", typeof(bool), typeof(Flyout), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenedChanged));
         public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(Flyout));
+        public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.RegisterAttached("CloseCommand", typeof(ICommand), typeof(Flyout), new UIPropertyMetadata(null));
+
+        public ICommand CloseCommand
+        {
+            get { return (ICommand)GetValue(CloseCommandProperty); }
+            set { SetValue(CloseCommandProperty, value); }
+        }
 
         public DataTemplate HeaderTemplate
         {
@@ -49,9 +58,52 @@ namespace MVVMApps.Metro.Controls
             set { SetValue(HeaderProperty, value); }
         }
 
+        private static Tuple<Theme, Accent> DetectTheme(Flyout flyout)
+        {
+            if (flyout == null)
+                return null;
+
+            // first look for owner
+            var window = flyout.TryFindParent<MetroWindow>();
+            var theme = window != null ? ThemeManager.DetectTheme(window) : null;
+            if (theme != null && theme.Item2 != null)
+                return theme;
+
+            // second try, look for main window
+            if (Application.Current != null) {
+                var mainWindow = Application.Current.MainWindow as MetroWindow;
+                theme = mainWindow != null ? ThemeManager.DetectTheme(mainWindow) : null;
+                if (theme != null && theme.Item2 != null)
+                    return theme;
+
+                // oh no, now look at application resource
+                theme = ThemeManager.DetectTheme(Application.Current);
+                if (theme != null && theme.Item2 != null)
+                    return theme;
+            }
+            return null;
+        }
+
         private static void IsOpenedChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
             var flyout = (Flyout)dependencyObject;
+
+            if ((bool)e.NewValue)
+            {
+                var window = flyout.TryFindParent<MetroWindow>();
+                if (window != null)
+                {
+                    // detect current theme
+                    var theme = DetectTheme(flyout);
+                    if (theme != null && theme.Item2 != null)
+                    {
+                        var accent = theme.Item2;
+                        // flyout use always the dark theme
+                        ThemeManager.ChangeTheme(flyout.Resources, accent, Theme.Dark);
+                    }
+                }
+            }
+
             VisualStateManager.GoToState(flyout, (bool) e.NewValue == false ? "Hide" : "Show", true);
             if (flyout.IsOpenChanged != null)
             {
@@ -101,26 +153,26 @@ namespace MVVMApps.Metro.Controls
                 default:
                     HorizontalAlignment = HorizontalAlignment.Left;
                     VerticalAlignment = VerticalAlignment.Stretch;
-                    hideFrame.Value = -root.DesiredSize.Width;
-                    root.RenderTransform = new TranslateTransform(-root.DesiredSize.Width, 0);
+                    hideFrame.Value = -root.ActualWidth;
+                    root.RenderTransform = new TranslateTransform(-root.ActualWidth, 0);
                     break;
                 case Position.Right:
                     HorizontalAlignment = HorizontalAlignment.Right;
                     VerticalAlignment = VerticalAlignment.Stretch;
-                    hideFrame.Value = root.DesiredSize.Width;
-                    root.RenderTransform = new TranslateTransform(root.DesiredSize.Width, 0);
+                    hideFrame.Value = root.ActualWidth;
+                    root.RenderTransform = new TranslateTransform(root.ActualWidth, 0);
                     break;
                 case Position.Top:
                     HorizontalAlignment = HorizontalAlignment.Stretch;
                     VerticalAlignment = VerticalAlignment.Top;
-                    hideFrameY.Value = -root.DesiredSize.Height;
-                    root.RenderTransform = new TranslateTransform(0, -root.DesiredSize.Height);
+                    hideFrameY.Value = -root.ActualHeight;
+                    root.RenderTransform = new TranslateTransform(0, -root.ActualHeight);
                     break;
                 case Position.Bottom:
                     HorizontalAlignment = HorizontalAlignment.Stretch;
                     VerticalAlignment = VerticalAlignment.Bottom;
-                    hideFrameY.Value = root.DesiredSize.Height;
-                    root.RenderTransform = new TranslateTransform(0, root.DesiredSize.Height);
+                    hideFrameY.Value = root.ActualHeight;
+                    root.RenderTransform = new TranslateTransform(0, root.ActualHeight);
                     break;
             }
         }
@@ -157,16 +209,16 @@ namespace MVVMApps.Metro.Controls
             switch (Position)
             {
                 default:
-                    hideFrame.Value = -root.DesiredSize.Width;
+                    hideFrame.Value = -root.ActualWidth;
                     break;
                 case Position.Right:
-                    hideFrame.Value = root.DesiredSize.Width;
+                    hideFrame.Value = root.ActualWidth;
                     break;
                 case Position.Top:
-                    hideFrameY.Value = -root.DesiredSize.Height;
+                    hideFrameY.Value = -root.ActualHeight;
                     break;
                 case Position.Bottom:
-                    hideFrameY.Value = root.DesiredSize.Height;
+                    hideFrameY.Value = root.ActualHeight;
                     break;
             }
         }

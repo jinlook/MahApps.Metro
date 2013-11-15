@@ -1,14 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-<<<<<<< HEAD
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                    xmlns:Actions="clr-namespace:MVVMApps.Metro.Actions">
-=======
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
->>>>>>> 0947d821e4d59d48a74ddb0b2e37e25c4bf4ad8a
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colours.xaml" />
+<<<<<<< HEAD
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/VS/Colours.xaml" />
+=======
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" />
+>>>>>>> b953feeacacf606a303d5e6947d4bd8f8aff1bfa
 
         <ResourceDictionary>
 
@@ -30,11 +28,16 @@
 
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="StandardTabControl" TargetType="{x:Type TabControl}">
+    <Style x:Key="StandardTabControl"
+           TargetType="{x:Type TabControl}">
         <Style.Resources>
             <Style TargetType="{x:Type TabItem}">
-                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="FocusVisualStyle"
+                        Value="{x:Null}" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource Foreground}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TabItem}">
@@ -59,9 +62,12 @@
                                         DockPanel.Dock="Right">
                                     <Button.Style>
                                         <Style TargetType="{x:Type Button}">
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Setter Property="Cursor" Value="Hand" />
-                                            <Setter Property="Focusable" Value="False" />
+                                            <Setter Property="Background"
+                                                    Value="Transparent" />
+                                            <Setter Property="Cursor"
+                                                    Value="Hand" />
+                                            <Setter Property="Focusable"
+                                                    Value="False" />
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type Button}">
@@ -80,32 +86,38 @@
                                                         <ControlTemplate.Triggers>
                                                             <MultiDataTrigger>
                                                                 <MultiDataTrigger.Conditions>
-                                                                    <Condition
-                                                                        Binding="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}}"
-                                                                        Value="false" />
-                                                                    <Condition
-                                                                        Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}}"
-                                                                        Value="false" />
+                                                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}}"
+                                                                               Value="false" />
+                                                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabItem}}"
+                                                                               Value="false" />
                                                                 </MultiDataTrigger.Conditions>
                                                                 <MultiDataTrigger.Setters>
-                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Hidden" />
                                                                 </MultiDataTrigger.Setters>
                                                             </MultiDataTrigger>
-                                                            <Trigger Property="IsEnabled" Value="False">
-                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            <Trigger Property="IsEnabled"
+                                                                     Value="False">
+                                                                <Setter Property="Visibility"
+                                                                        Value="Hidden" />
                                                             </Trigger>
-                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                            <Trigger Property="IsMouseOver"
+                                                                     Value="True">
                                                                 <Setter Property="Background"
                                                                         Value="{DynamicResource CloseButtonBackgroundHighlighted}" />
-                                                                <Setter TargetName="ButtonPath" Property="Stroke"
+                                                                <Setter TargetName="ButtonPath"
+                                                                        Property="Stroke"
                                                                         Value="{DynamicResource CloseButtonStrokeHighlighted}" />
                                                             </Trigger>
-                                                            <Trigger Property="IsPressed" Value="true">
+                                                            <Trigger Property="IsPressed"
+                                                                     Value="true">
                                                                 <Setter Property="Background"
                                                                         Value="{DynamicResource CloseButtonBackgroundPressed}" />
-                                                                <Setter TargetName="ButtonPath" Property="Stroke"
+                                                                <Setter TargetName="ButtonPath"
+                                                                        Property="Stroke"
                                                                         Value="{DynamicResource CloseButtonStroke}" />
-                                                                <Setter TargetName="ButtonPath" Property="Margin"
+                                                                <Setter TargetName="ButtonPath"
+                                                                        Property="Margin"
                                                                         Value="2.5,2.5,1.5,1.5" />
                                                             </Trigger>
                                                         </ControlTemplate.Triggers>
@@ -117,14 +129,20 @@
                                 </Button>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected" Value="false">
-                                    <Setter Property="Background" Value="Transparent" />
+                                <Trigger Property="IsSelected"
+                                         Value="false">
+                                    <Setter Property="Background"
+                                            Value="Transparent" />
                                 </Trigger>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Background" Value="{DynamicResource BorderBrushSelected}" />
+                                <Trigger Property="IsMouseOver"
+                                         Value="true">
+                                    <Setter Property="Background"
+                                            Value="{DynamicResource BorderBrushSelected}" />
                                 </Trigger>
-                                <Trigger Property="IsSelected" Value="true">
-                                    <Setter Property="Background" Value="{DynamicResource BackgroundSelected}" />
+                                <Trigger Property="IsSelected"
+                                         Value="true">
+                                    <Setter Property="Background"
+                                            Value="{DynamicResource BackgroundSelected}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -150,7 +168,8 @@
                                       IsItemsHost="True"
                                       KeyboardNavigation.TabIndex="1" />
                         </Border>
-                        <Border Grid.Row="1" Background="{DynamicResource Background}" />
+                        <Border Grid.Row="1"
+                                Background="{DynamicResource Background}" />
                         <ContentPresenter Name="PART_SelectedContentHost"
                                           Grid.Row="1"
                                           ContentSource="SelectedContent" />
@@ -161,11 +180,14 @@
     </Style>
     <DataTemplate x:Key="ClosableTabItemTemplate">
         <DockPanel>
-            <ContentPresenter VerticalAlignment="Center" Content="{Binding DisplayName}">
+            <ContentPresenter VerticalAlignment="Center"
+                              Content="{Binding DisplayName}">
                 <ContentPresenter.Resources>
                     <Style TargetType="TextBlock">
-                        <Setter Property="Foreground" Value="{StaticResource Foreground}" />
-                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="Foreground"
+                                Value="{StaticResource Foreground}" />
+                        <Setter Property="FontSize"
+                                Value="20" />
                     </Style>
                 </ContentPresenter.Resources>
             </ContentPresenter>
@@ -175,9 +197,9 @@
     <!--  This template explains how to render the 'Workspace' content area in the main window.  -->
     <DataTemplate x:Key="WorkspacesTemplate">
         <TabControl Margin="0"
-            IsSynchronizedWithCurrentItem="True"
-            ItemTemplate="{StaticResource ClosableTabItemTemplate}"
-            ItemsSource="{Binding}"
-            Style="{DynamicResource StandardTabControl}" />
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemTemplate="{StaticResource ClosableTabItemTemplate}"
+                    ItemsSource="{Binding}"
+                    Style="{DynamicResource StandardTabControl}" />
     </DataTemplate>
 </ResourceDictionary>

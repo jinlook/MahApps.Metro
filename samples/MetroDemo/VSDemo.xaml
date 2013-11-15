@@ -7,10 +7,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Colours.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Fonts.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/VS/Colours.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/VS/Colors.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/VS/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

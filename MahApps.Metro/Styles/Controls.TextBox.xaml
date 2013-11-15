@@ -30,6 +30,10 @@
                 Value="0" />
         <Setter Property="BorderBrush"
                 Value="{DynamicResource TextBoxBorderBrush}" />
+        <Setter Property="Controls:TextboxHelper.FocusBorderBrush"
+                Value="{DynamicResource TextBoxFocusBorderBrush}" />
+        <Setter Property="Controls:TextboxHelper.MouseOverBorderBrush"
+                Value="{DynamicResource TextBoxMouseOverBorderBrush}" />
         <!-- change SnapsToDevicePixels to true to view a better border and validation error -->
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
@@ -103,12 +107,10 @@
                         <Rectangle x:Name="Base"
                                    Stroke="{TemplateBinding BorderBrush}"
                                    StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}}"
-                                   Opacity="1"
                                    Fill="{TemplateBinding Background}" />
                         <Rectangle x:Name="FocusRectangle"
-                                   StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}}"
-                                   Opacity="0"
-                                   Stroke="{DynamicResource BlackBrush}" />
+                                   Visibility="Collapsed"
+                                   StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}}" />
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -214,8 +216,11 @@
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="FocusRectangle"
-                                    Property="Opacity"
-                                    Value="1" />
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="FocusRectangle"
+                                    Property="Stroke"
+                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TextboxHelper.MouseOverBorderBrush)}" />
                         </Trigger>
                         <Trigger Property="IsEnabled"
                                  Value="False">
@@ -232,8 +237,11 @@
                         <Trigger Property="IsFocused"
                                  Value="True">
                             <Setter TargetName="FocusRectangle"
-                                    Property="Opacity"
-                                    Value="1" />
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="FocusRectangle"
+                                    Property="Stroke"
+                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TextboxHelper.FocusBorderBrush)}" />
                         </Trigger>
                         <Trigger SourceName="PART_ClearText"
                                  Property="IsMouseOver"
@@ -280,6 +288,38 @@
                                 <BeginStoryboard Storyboard="{StaticResource exitHasText}" />
                             </Trigger.ExitActions>
                         </Trigger>
+
+                        <Trigger Property="Controls:TextboxHelper.IsWaitingForData"
+                                 Value="True">
+                            <Setter TargetName="Base"
+                                    Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect ShadowDepth="0"
+                                                      Color="{DynamicResource BlackColor}"
+                                                      Opacity="0"
+                                                      BlurRadius="10" />
+                                </Setter.Value>
+                            </Setter>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0"
+                                                         To="1"
+                                                         Storyboard.TargetName="Base"
+                                                         Storyboard.TargetProperty="(Effect).Opacity"
+                                                         Duration="00:00:02"
+                                                         AutoReverse="True"
+                                                         RepeatBehavior="Forever" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                        <Trigger Property="Controls:TextboxHelper.IsWaitingForData"
+                                 Value="False">
+                            <Setter TargetName="Base"
+                                    Property="Effect"
+                                    Value="{x:Null}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -308,6 +348,10 @@
                 Value="0" />
         <Setter Property="BorderBrush"
                 Value="{DynamicResource TextBoxBorderBrush}" />
+        <Setter Property="Controls:TextboxHelper.FocusBorderBrush"
+                Value="{DynamicResource TextBoxFocusBorderBrush}" />
+        <Setter Property="Controls:TextboxHelper.MouseOverBorderBrush"
+                Value="{DynamicResource TextBoxMouseOverBorderBrush}" />
         <Setter Property="Controls:TextboxHelper.ButtonTemplate"
                 Value="{DynamicResource ChromelessButtonTemplate}" />
         <!-- change SnapsToDevicePixels to true to view a better border and validation error -->
@@ -383,12 +427,10 @@
                         <Rectangle x:Name="Base"
                                    Stroke="{TemplateBinding BorderBrush}"
                                    StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}}"
-                                   Opacity="1"
                                    Fill="{TemplateBinding Background}" />
                         <Rectangle x:Name="FocusRectangle"
-                                   StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}}"
-                                   Opacity="0"
-                                   Stroke="{DynamicResource BlackBrush}" />
+                                   Visibility="Collapsed"
+                                   StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}}" />
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -485,8 +527,11 @@
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="FocusRectangle"
-                                    Property="Opacity"
-                                    Value="1" />
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="FocusRectangle"
+                                    Property="Stroke"
+                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TextboxHelper.MouseOverBorderBrush)}" />
                         </Trigger>
                         <Trigger Property="IsEnabled"
                                  Value="False">
@@ -503,8 +548,11 @@
                         <Trigger Property="IsFocused"
                                  Value="True">
                             <Setter TargetName="FocusRectangle"
-                                    Property="Opacity"
-                                    Value="1" />
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="FocusRectangle"
+                                    Property="Stroke"
+                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TextboxHelper.FocusBorderBrush)}" />
                         </Trigger>
                         <Trigger SourceName="PART_ClearText"
                                  Property="IsMouseOver"

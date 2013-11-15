@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace MVVMApps.Metro.Controls
 {
@@ -37,7 +36,10 @@ namespace MVVMApps.Metro.Controls
         void MetroTabItem_Unloaded(object sender, RoutedEventArgs e)
         {
             this.Unloaded -= MetroTabItem_Unloaded;
-            closeButton.Click -= closeButton_Click;
+            if (closeButton != null)
+            {
+                closeButton.Click -= closeButton_Click;
+            }
 
             closeButtonClickUnloaded = true;
         }
@@ -54,37 +56,6 @@ namespace MVVMApps.Metro.Controls
             }
         }
 
-        public double HeaderFontSize
-        {
-            get { return (double)GetValue(HeaderFontSizeProperty); }
-            set { SetValue(HeaderFontSizeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for HeaderSize.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HeaderFontSizeProperty =
-            DependencyProperty.Register("HeaderFontSize", typeof(double), typeof(MetroTabItem), new PropertyMetadata(26.67, (obj, args) =>
-            {
-                var item = (MetroTabItem)obj;
-
-                if (item.closeButton == null)
-                {
-                    item.ApplyTemplate();
-                }
-
-                double fontDpiSize = (double)args.NewValue;
-
-                double fontHeight = Math.Ceiling(fontDpiSize * item.rootLabel.FontFamily.LineSpacing);
-
-                var newMargin = (Math.Round(fontHeight) / 2.2) - (item.rootLabel.Padding.Top);
-
-                var previousMargin = item.closeButton.Margin;
-                item.newButtonMargin = new Thickness(previousMargin.Left, newMargin, previousMargin.Right, previousMargin.Bottom);
-                item.closeButton.Margin = item.newButtonMargin;
-
-                item.closeButton.UpdateLayout();
-
-            }));
-
         public bool CloseButtonEnabled
         {
             get { return (bool)GetValue(CloseButtonEnabledProperty); }
@@ -92,29 +63,47 @@ namespace MVVMApps.Metro.Controls
         }
 
         public static readonly DependencyProperty CloseButtonEnabledProperty =
-            DependencyProperty.Register("CloseButtonEnabled", typeof(bool), typeof(MetroTabItem), new PropertyMetadata(false));
+            DependencyProperty.Register("CloseButtonEnabled", typeof(bool), typeof(MetroTabItem), new PropertyMetadata(false, OnCloseButtonEnabledPropertyChangedCallback));
+
+        private static void OnCloseButtonEnabledPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            var item = dependencyObject as MetroTabItem;
+            if (item != null)
+            {
+                if (item.closeButton == null)
+                {
+                    item.ApplyTemplate();
+                }
+
+                if (item.closeButton != null)
+                {
+                    item.closeButton.Visibility = (bool)e.NewValue ? Visibility.Hidden : Visibility.Collapsed;
+                }
+            }
+        }
 
         internal Button closeButton = null;
         internal Thickness newButtonMargin;
-        internal Label rootLabel = null;
+        internal ContentPresenter contentSite = null;
         private bool closeButtonClickUnloaded = false;
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            bool closeButtonNullBefore = closeButton == null; //TabControl's multi-loading/unloading issue
-
             closeButton = GetTemplateChild("PART_CloseButton") as Button;
-            closeButton.Margin = newButtonMargin;
+            if (closeButton != null)
+            {
+                closeButton.Margin = newButtonMargin;
 
-            if (closeButtonNullBefore)
+                //TabControl's multi-loading/unloading issue
+                closeButton.Click -= closeButton_Click;
                 closeButton.Click += closeButton_Click;
 
+                closeButton.Visibility = CloseButtonEnabled ? Visibility.Hidden : Visibility.Collapsed;
+            }
 
-            closeButton.Visibility = CloseButtonEnabled ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
-
-            rootLabel = GetTemplateChild("root") as Label;
+            contentSite = GetTemplateChild("ContentSite") as ContentPresenter;
         }
 
         void closeButton_Click(object sender, RoutedEventArgs e)
@@ -152,16 +141,15 @@ namespace MVVMApps.Metro.Controls
 
         protected override void OnSelected(RoutedEventArgs e)
         {
-            if (closeButton != null)
-                if (CloseButtonEnabled)
-                    closeButton.Visibility = Visibility.Visible;
+            if (closeButton != null && CloseButtonEnabled)
+                closeButton.Visibility = Visibility.Visible;
 
             base.OnSelected(e);
         }
 
         protected override void OnUnselected(RoutedEventArgs e)
         {
-            if (closeButton != null)
+            if (closeButton != null && CloseButtonEnabled)
                 closeButton.Visibility = Visibility.Hidden;
 
             base.OnUnselected(e);
