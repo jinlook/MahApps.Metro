@@ -13,7 +13,7 @@
     <Color x:Key="GrayNormal">#FF7D7D7D</Color>
     <Color x:Key="GrayHover">#FFAAAAAA</Color>
 
-    <Color x:Key="FlyoutBackgroundColor">#2B2B2B</Color>
+    <Color x:Key="FlyoutColor">#FF2B2B2B</Color>
 
     <!-- re-set brushes too -->
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
@@ -42,7 +42,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="GrayBrush1" Color="{StaticResource Gray1}" />
-    <SolidColorBrush x:Key="GrayBrush2" Color="{StaticResource Gray2}" />
+    <SolidColorBrush x:Key="GrayBrush2" Color="{StaticResource Gray2}"/>
     <SolidColorBrush x:Key="GrayBrush7" Color="{StaticResource Gray7}" />
     <SolidColorBrush x:Key="GrayBrush8" Color="{StaticResource Gray8}" />
     <SolidColorBrush x:Key="GrayBrush10" Color="{StaticResource Gray10}" />
@@ -50,8 +50,6 @@
     <SolidColorBrush x:Key="GrayNormalBrush" Color="{StaticResource GrayNormal}" />
     <SolidColorBrush x:Key="GrayHoverBrush" Color="{StaticResource GrayHover}" />
 
-    <SolidColorBrush x:Key="TextBoxMouseOverBorderBrush" Color="{StaticResource Gray2}" />
-    <SolidColorBrush x:Key="CheckBoxBrush" Color="{StaticResource Gray2}" />
     <SolidColorBrush x:Key="CheckBoxMouseOverBrush" Color="{StaticResource Gray1}" />
 
     <SolidColorBrush x:Key="SliderValueDisabled" Color="#FF535353" />
@@ -60,6 +58,32 @@
     <SolidColorBrush x:Key="SliderTrackHover" Color="#FF737373" />
     <SolidColorBrush x:Key="SliderTrackNormal" Color="#FF6C6C6C" />
 
-    <SolidColorBrush x:Key="FlyoutBackgroundBrush" Color="{StaticResource FlyoutBackgroundColor}" />
+    <SolidColorBrush x:Key="FlyoutBackgroundBrush" Color="{StaticResource FlyoutColor}" />
+    <SolidColorBrush x:Key="FlyoutForegroundBrush" Color="{StaticResource BlackColor}" />
+
+    <SolidColorBrush x:Key="FlatButtonPressedBackgroundBrush" Color="#444444"/>
+
+    <!-- menu brushes -->
+    <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="ContextMenuBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="SubMenuBackgroundBrush" Color="{StaticResource WhiteColor}" />
+
+    <SolidColorBrush x:Key="ContextMenuBorderBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="SubMenuBorderBrush" Color="{StaticResource BlackColor}" />
+
+    <SolidColorBrush x:Key="MenuItemSelectionFill" Color="#313131" />
+    <SolidColorBrush x:Key="MenuItemSelectionStroke" Color="#313131" />
+
+    <SolidColorBrush x:Key="TopMenuItemPressedFill" Color="#313131" />
+    <SolidColorBrush x:Key="TopMenuItemPressedStroke" Color="#E0717070" />
+    <SolidColorBrush x:Key="TopMenuItemSelectionStroke" Color="#90717070" />
+
+    <!-- original #FF9A9A9A" -->
+    <SolidColorBrush x:Key="DisabledMenuItemForeground" Color="{StaticResource Gray7}" />
+    <SolidColorBrush x:Key="DisabledMenuItemGlyphPanel" Color="#848589" />
+
+    <SolidColorBrush x:Key="{x:Static SystemColors.MenuTextBrushKey}" Color="{StaticResource BlackColor}" />
+
+    <Color x:Key="MenuShadowColor">#FFFFFFFF</Color>
 
 </ResourceDictionary>

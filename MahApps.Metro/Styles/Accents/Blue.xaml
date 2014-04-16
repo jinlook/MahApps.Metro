@@ -3,8 +3,6 @@
     <!--ACCENT COLORS-->
     <Color x:Key="HighlightColor">#FF086F9E</Color>
         
-    <Color x:Key="AccentDarkColor">#FF1c739d</Color>
-    
     <!--80%-->
     <Color x:Key="AccentColor">#CC119EDA</Color>
     <!--60%-->
@@ -29,5 +27,11 @@
         <GradientStop Color="{StaticResource HighlightColor}" Offset="0" />
         <GradientStop Color="{StaticResource AccentColor3}" Offset="1" />
     </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="CheckmarkFill" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="RightArrowFill" Color="{StaticResource AccentColor}" />
+
+    <Color x:Key="IdealForegroundColor">White</Color>
+    <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="{StaticResource IdealForegroundColor}"/>
 
 </ResourceDictionary>

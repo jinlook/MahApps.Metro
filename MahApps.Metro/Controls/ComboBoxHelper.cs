@@ -7,9 +7,13 @@ using System.Windows.Controls;
 
 namespace MVVMApps.Metro.Controls
 {
+    /// <summary>
+    /// A helper class that provides various attached properties for the ComboBox control.
+    /// <see cref="ComboBox"/>
+    /// </summary>
     public class ComboBoxHelper : DependencyObject
     {
-        public static readonly DependencyProperty EnableVirtualizationWithGroupingProperty = DependencyProperty.RegisterAttached("EnableVirtualizationWithGrouping", typeof(bool), typeof(ComboBox), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty EnableVirtualizationWithGroupingProperty = DependencyProperty.RegisterAttached("EnableVirtualizationWithGrouping", typeof(bool), typeof(ComboBoxHelper), new FrameworkPropertyMetadata(false));
 
         public static void SetEnableVirtualizationWithGrouping(DependencyObject obj, bool value)
         {

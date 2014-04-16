@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 
 namespace MVVMApps.Metro.Controls
 {
+    /// <summary>
+    /// A control that imitate a slideshow with back/forward buttons.
+    /// </summary>
     [TemplatePart(Name = "PART_Presenter", Type = typeof(TransitioningContentControl))]
     [TemplatePart(Name = "PART_BackButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ForwardButton", Type = typeof(Button))]
@@ -89,13 +92,14 @@ namespace MVVMApps.Metro.Controls
                 forwardButton.Visibility = Visibility.Hidden;
             }
         }
+
         void FlipView_Loaded(object sender, RoutedEventArgs e)
         {
             /* Loaded event fires twice if its a child of a TabControl.
              * Once because the TabControl seems to initiali(z|s)e everything.
              * And a second time when the Tab (housing the FlipView) is switched to. */
 
-            if (backButton == null) //OnApplyTemplate hasn't been called yet.
+            if (backButton == null || forwardButton == null) //OnApplyTemplate hasn't been called yet.
                 ApplyTemplate();
 
             if (loaded) return; //Counteracts the double 'Loaded' event issue.
@@ -105,12 +109,6 @@ namespace MVVMApps.Metro.Controls
 
             this.SelectionChanged += FlipView_SelectionChanged;
             this.PreviewKeyDown += FlipView_PreviewKeyDown;
-
-            ShowBannerStoryboard = ((Storyboard)this.Template.Resources["ShowBannerStoryboard"]).Clone();
-            HideBannerStoryboard = ((Storyboard)this.Template.Resources["HideBannerStoryboard"]).Clone();
-
-            ShowControlStoryboard = ((Storyboard)this.Template.Resources["ShowControlStoryboard"]).Clone();
-            HideControlStoryboard = ((Storyboard)this.Template.Resources["HideControlStoryboard"]).Clone();
 
             SelectedIndex = 0;
 
@@ -157,11 +155,19 @@ namespace MVVMApps.Metro.Controls
         {
             base.OnApplyTemplate();
 
+            ShowBannerStoryboard = ((Storyboard)this.Template.Resources["ShowBannerStoryboard"]).Clone();
+            HideBannerStoryboard = ((Storyboard)this.Template.Resources["HideBannerStoryboard"]).Clone();
+
+            ShowControlStoryboard = ((Storyboard)this.Template.Resources["ShowControlStoryboard"]).Clone();
+            HideControlStoryboard = ((Storyboard)this.Template.Resources["HideControlStoryboard"]).Clone();
+
             presenter = GetTemplateChild(PART_Presenter) as TransitioningContentControl;
             backButton = GetTemplateChild(PART_BackButton) as Button;
             forwardButton = GetTemplateChild(PART_ForwardButton) as Button;
             bannerGrid = GetTemplateChild(PART_BannerGrid) as Grid;
             bannerLabel = GetTemplateChild(PART_BannerLabel) as Label;
+
+            bannerLabel.Opacity = IsBannerEnabled ? 1.0 : 0.0;
         }
 
         protected override void OnItemsSourceChanged(System.Collections.IEnumerable oldValue, System.Collections.IEnumerable newValue)
@@ -188,24 +194,33 @@ namespace MVVMApps.Metro.Controls
             GoBack();
         }
 
+        /// <summary>
+        /// Changes the current slide to the previous item.
+        /// </summary>
         public void GoBack()
         {
             if (SelectedIndex > 0)
             {
-                presenter.Transition = "RightReplaceTransition";
+                presenter.Transition = TransitionType.RightReplace;
                 SelectedIndex--;
             }
         }
 
+        /// <summary>
+        /// Changes the current to the next item.
+        /// </summary>
         public void GoForward()
         {
             if (SelectedIndex < Items.Count - 1)
             {
-                presenter.Transition = "LeftReplaceTransition";
+                presenter.Transition = TransitionType.LeftReplace;
                 SelectedIndex++;
             }
         }
 
+        /// <summary>
+        /// Brings the control buttons (next/previous) into view.
+        /// </summary>
         public void ShowControlButtons()
         {
             controls_visibility_override = false;
@@ -216,6 +231,9 @@ namespace MVVMApps.Metro.Controls
                     forwardButton.Visibility = Visibility.Visible;
                 });
         }
+        /// <summary>
+        /// Removes the control buttons (next/previous) from view.
+        /// </summary>
         public void HideControlButtons()
         {
             controls_visibility_override = true;
@@ -230,13 +248,15 @@ namespace MVVMApps.Metro.Controls
         {
             if (IsBannerEnabled)
                 bannerGrid.BeginStoryboard(ShowBannerStoryboard);
-            bannerLabel.Content = BannerText;
         }
 
         private void HideBanner()
         {
-            if (this.Height > 0.0)
+            if (this.ActualHeight > 0.0)
+            {
+                bannerLabel.BeginStoryboard(HideControlStoryboard);
                 bannerGrid.BeginStoryboard(HideBannerStoryboard);
+            }
         }
 
         public static readonly DependencyProperty BannerTextProperty =
@@ -244,6 +264,9 @@ namespace MVVMApps.Metro.Controls
                 new FrameworkPropertyMetadata("Banner", FrameworkPropertyMetadataOptions.AffectsRender,(d, e) => ExecuteWhenLoaded(((FlipView)d), 
                     () => ((FlipView)d).ChangeBannerText((string)e.NewValue))));
 
+        /// <summary>
+        /// Gets/sets the text that is displayed in the FlipView's banner.
+        /// </summary>
         public string BannerText
         {
             get { return (string)GetValue(BannerTextProperty); }
@@ -321,6 +344,9 @@ namespace MVVMApps.Metro.Controls
                 }
             }));
 
+        /// <summary>
+        /// Gets/sets whether the FlipView's banner is visible.
+        /// </summary>
         public bool IsBannerEnabled
         {
             get { return (bool)GetValue(IsBannerEnabledProperty); }

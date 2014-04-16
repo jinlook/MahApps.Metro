@@ -3,7 +3,14 @@
                     xmlns:Controls="clr-namespace:MVVMApps.Metro.Controls"
                     xmlns:Behaviours="clr-namespace:MVVMApps.Metro.Behaviours">
 
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MetroScrollViewer -->
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Scrollbars.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="{x:Type Controls:MetroAnimatedSingleRowTabControl}">
+        <Setter Property="Controls:ControlsHelper.Transition"
+                Value="Left" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Controls:MetroAnimatedSingleRowTabControl}">
@@ -19,10 +26,11 @@
                             <RowDefinition x:Name="RowDefinition1"
                                            Height="*" />
                         </Grid.RowDefinitions>
-                        <ScrollViewer Margin="{TemplateBinding TabStripMargin}"
+                        <ScrollViewer x:Name="HeaderPanelScroll"
+                                      Margin="{TemplateBinding TabStripMargin}"
                                       VerticalScrollBarVisibility="Disabled"
                                       HorizontalScrollBarVisibility="Auto"
-                                      Template="{DynamicResource ScrollViewerTemplate}">
+                                      Style="{DynamicResource MetroScrollViewer}">
                             <TabPanel x:Name="HeaderPanel"
                                       IsItemsHost="True"
                                       Panel.ZIndex="1"
@@ -30,10 +38,12 @@
                                       Grid.Row="0"
                                       KeyboardNavigation.TabIndex="1" />
                         </ScrollViewer>
-                        <Controls:MetroContentControl x:Name="ContentPanel"
-                                                      Behaviours:ReloadBehavior.OnSelectedTabChanged="True"
-                                                      Grid.Column="0"
-                                                      Grid.Row="1">
+                        <Controls:TransitioningContentControl x:Name="ContentPanel"
+                                                              Transition="{TemplateBinding Controls:ControlsHelper.Transition}"
+                                                              Behaviours:ReloadBehavior.OnSelectedTabChanged="True"
+                                                              RestartTransitionOnContentChange="True"
+                                                              Grid.Column="0"
+                                                              Grid.Row="1">
                             <ContentPresenter x:Name="PART_SelectedContentHost"
                                               ContentTemplate="{TemplateBinding SelectedContentTemplate}"
                                               Content="{TemplateBinding SelectedContent}"
@@ -41,13 +51,13 @@
                                               ContentSource="SelectedContent"
                                               Margin="{TemplateBinding Padding}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Controls:MetroContentControl>
+                        </Controls:TransitioningContentControl>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement"
                                  Value="Bottom">
                             <Setter Property="Grid.Row"
-                                    TargetName="HeaderPanel"
+                                    TargetName="HeaderPanelScroll"
                                     Value="1" />
                             <Setter Property="Grid.Row"
                                     TargetName="ContentPanel"
@@ -58,20 +68,19 @@
                             <Setter Property="Height"
                                     TargetName="RowDefinition1"
                                     Value="Auto" />
-                            <Setter Property="Margin"
-                                    TargetName="HeaderPanel"
-                                    Value="2,0,2,2" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement"
                                  Value="Left">
+                            <Setter Property="Controls:ControlsHelper.Transition"
+                                    Value="Right" />
                             <Setter Property="Grid.Row"
-                                    TargetName="HeaderPanel"
+                                    TargetName="HeaderPanelScroll"
                                     Value="0" />
                             <Setter Property="Grid.Row"
                                     TargetName="ContentPanel"
                                     Value="0" />
                             <Setter Property="Grid.Column"
-                                    TargetName="HeaderPanel"
+                                    TargetName="HeaderPanelScroll"
                                     Value="0" />
                             <Setter Property="Grid.Column"
                                     TargetName="ContentPanel"
@@ -88,20 +97,23 @@
                             <Setter Property="Height"
                                     TargetName="RowDefinition1"
                                     Value="0" />
-                            <Setter Property="Margin"
-                                    TargetName="HeaderPanel"
-                                    Value="2,2,0,2" />
+                            <Setter Property="VerticalScrollBarVisibility"
+                                    TargetName="HeaderPanelScroll"
+                                    Value="Auto" />
+                            <Setter Property="HorizontalScrollBarVisibility"
+                                    TargetName="HeaderPanelScroll"
+                                    Value="Disabled" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement"
                                  Value="Right">
                             <Setter Property="Grid.Row"
-                                    TargetName="HeaderPanel"
+                                    TargetName="HeaderPanelScroll"
                                     Value="0" />
                             <Setter Property="Grid.Row"
                                     TargetName="ContentPanel"
                                     Value="0" />
                             <Setter Property="Grid.Column"
-                                    TargetName="HeaderPanel"
+                                    TargetName="HeaderPanelScroll"
                                     Value="1" />
                             <Setter Property="Grid.Column"
                                     TargetName="ContentPanel"
@@ -118,9 +130,15 @@
                             <Setter Property="Height"
                                     TargetName="RowDefinition1"
                                     Value="0" />
-                            <Setter Property="Margin"
-                                    TargetName="HeaderPanel"
-                                    Value="0,2,2,2" />
+                            <Setter Property="VerticalScrollBarVisibility"
+                                    TargetName="HeaderPanelScroll"
+                                    Value="Auto" />
+                            <Setter Property="HorizontalScrollBarVisibility"
+                                    TargetName="HeaderPanelScroll"
+                                    Value="Disabled" />
+                            <Setter Property="Controls:ControlsHelper.VerticalScrollBarOnLeftSide"
+                                    TargetName="HeaderPanelScroll"
+                                    Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

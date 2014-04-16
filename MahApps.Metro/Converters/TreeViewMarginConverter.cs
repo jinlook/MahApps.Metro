@@ -22,7 +22,7 @@ namespace MVVMApps.Metro.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return DependencyProperty.UnsetValue;
         }
     }
 
@@ -40,8 +40,8 @@ namespace MVVMApps.Metro.Converters
 
         private static TreeViewItem GetParent(TreeViewItem item)
         {
-            var parent = VisualTreeHelper.GetParent(item);
-            while (!(parent is TreeViewItem || parent is TreeView))
+            var parent = item != null ? VisualTreeHelper.GetParent(item) : null;
+            while (parent != null && !(parent is TreeViewItem || parent is TreeView))
             {
                 parent = VisualTreeHelper.GetParent(parent);
             }

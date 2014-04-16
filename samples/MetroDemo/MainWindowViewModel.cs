@@ -1,48 +1,77 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using MVVMApps.Metro.Controls;
+using System.Windows.Media;
+using MVVMApps.Metro;
 using MetroDemo.Models;
 using System.Windows.Input;
 
 namespace MetroDemo
 {
+    public class AccentColorMenuData
+    {
+        public string Name { get; set; }
+        public Brush BorderColorBrush { get; set; }
+        public Brush ColorBrush { get; set; }
+
+        private ICommand changeAccentCommand;
+
+        public ICommand ChangeAccentCommand
+        {
+            get { return this.changeAccentCommand ?? (changeAccentCommand = new SimpleCommand { CanExecuteDelegate = x => true, ExecuteDelegate = x => this.DoChangeTheme(x) }); }
+        }
+
+        protected virtual void DoChangeTheme(object sender)
+        {
+            var theme = ThemeManager.DetectAppStyle(Application.Current);
+            var accent = ThemeManager.GetAccent(this.Name);
+            ThemeManager.ChangeAppStyle(Application.Current, accent, theme.Item1);
+        }
+    }
+
+    public class AppThemeMenuData : AccentColorMenuData
+    {
+        protected override void DoChangeTheme(object sender)
+        {
+            var theme = ThemeManager.DetectAppStyle(Application.Current);
+            var appTheme = ThemeManager.GetAppTheme(this.Name);
+            ThemeManager.ChangeAppStyle(Application.Current, theme.Item2, appTheme);
+        }
+    }
+
     public class MainWindowViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
-        readonly PanoramaGroup _albums;
-        readonly PanoramaGroup _artists;
         int? _integerGreater10Property;
+        private bool _animateOnPositionChange = true;
 
         public MainWindowViewModel()
         {
             SampleData.Seed();
+
+            // create accent color menu items for the demo
+            this.AccentColors = ThemeManager.Accents
+                                            .Select(a => new AccentColorMenuData() { Name = a.Name, ColorBrush = a.Resources["AccentColorBrush"] as Brush })
+                                            .ToList();
+            // create metro theme color menu items for the demo
+            this.AppThemes = ThemeManager.AppThemes
+                                           .Select(a => new AppThemeMenuData() { Name = a.Name, BorderColorBrush = a.Resources["BlackColorBrush"] as Brush, ColorBrush = a.Resources["WhiteColorBrush"] as Brush })
+                                           .ToList();
             
             Albums = SampleData.Albums;
             Artists = SampleData.Artists;
-            
-            Busy = true;
 
-            _albums = new PanoramaGroup("trending tracks");
-            _artists = new PanoramaGroup("trending artists");
-
-            Groups = new ObservableCollection<PanoramaGroup> { _albums, _artists };
-
-            _artists.SetSource(SampleData.Artists.Take(25));
-            _albums.SetSource(SampleData.Albums.Take(25));
-
-            Busy = false;
+            BrushResources = FindBrushResources();
         }
 
-        public ObservableCollection<PanoramaGroup> Groups { get; set; }
-        public bool Busy { get; set; }
         public string Title { get; set; }
         public int SelectedIndex { get; set; }
         public List<Album> Albums { get; set; }
         public List<Artist> Artists { get; set; }
+        public List<AccentColorMenuData> AccentColors { get; set; }
+        public List<AppThemeMenuData> AppThemes { get; set; }
 
         public int? IntegerGreater10Property
         {
@@ -72,6 +101,34 @@ namespace MetroDemo
 
                 _datePickerDate = value;
                 RaisePropertyChanged("DatePickerDate");
+            }
+        }
+
+        bool _magicToggleButtonIsChecked = true;
+        public bool MagicToggleButtonIsChecked
+        {
+            get { return this._magicToggleButtonIsChecked; }
+            set
+            {
+                if (Equals(value, _magicToggleButtonIsChecked))
+                {
+                    return;
+                }
+
+                _magicToggleButtonIsChecked = value;
+                RaisePropertyChanged("MagicToggleButtonIsChecked");
+            }
+        }
+
+        private bool _quitConfirmationEnabled;
+        public bool QuitConfirmationEnabled
+        {
+            get { return _quitConfirmationEnabled; }
+            set
+            {
+                if (value.Equals(_quitConfirmationEnabled)) return;
+                _quitConfirmationEnabled = value;
+                RaisePropertyChanged("QuitConfirmationEnabled");
             }
         }
 
@@ -105,7 +162,35 @@ namespace MetroDemo
                 }
             }
         }
+        
+        private ICommand textBoxButtonCmdWithParameter;
 
+        public ICommand TextBoxButtonCmdWithParameter
+        {
+            get
+            {
+                return this.textBoxButtonCmdWithParameter ?? (this.textBoxButtonCmdWithParameter = new TextBoxButtonCommandWithIntParameter());
+            }
+        }
+
+        public class TextBoxButtonCommandWithIntParameter : ICommand
+        {
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public event EventHandler CanExecuteChanged;
+
+            public void Execute(object parameter)
+            {
+                if (parameter is String)
+                {
+                    MessageBox.Show("TextBox Button was clicked with parameter!" + Environment.NewLine + "Text: " + parameter);
+                }
+            }
+        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -172,6 +257,38 @@ namespace MetroDemo
             {
 
             }
+        }
+
+        public IEnumerable<string> BrushResources { get; private set; }
+
+        public bool AnimateOnPositionChange
+        {
+            get
+            {
+                return _animateOnPositionChange;
+            }
+            set
+            {
+                if (Equals(_animateOnPositionChange, value)) return;
+                _animateOnPositionChange = value;
+                RaisePropertyChanged("AnimateOnPositionChange");
+            }
+        }
+
+        private IEnumerable<string> FindBrushResources()
+        {
+            var rd = new ResourceDictionary
+                {
+                    Source = new Uri(@"/MVVMApps.Metro;component/Styles/Colors.xaml", UriKind.RelativeOrAbsolute)
+                };
+
+            var resources = rd.Keys.Cast<object>()
+                    .Where(key => rd[key] is Brush)
+                    .Select(key => key.ToString())
+                    .OrderBy(s => s)
+                    .ToList();
+
+            return resources;
         }
     }
 }

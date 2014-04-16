@@ -4,17 +4,19 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Colors.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Fonts.xaml" />
 
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/DropDownButton.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Glow.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/FlipView.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Flyout.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/FlyoutsControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroContentControl.xaml" />
-        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroImage.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroProgressBar.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroWindow.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/NumericUpDown.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Pivot.xaml" />
-        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Panorama.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/ProgressRing.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/RangeSlider.xaml" />
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/SplitButton.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroAnimatedTabControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroAnimatedSingleRowTabControl.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/MetroTabControl.xaml" />
@@ -22,6 +24,7 @@
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Tile.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/TransitioningContentControl.xaml" />
-        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Glow.xaml" />
+
+        <ResourceDictionary Source="/MVVMApps.Metro;component/Themes/Dialogs/BaseMetroDialog.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
