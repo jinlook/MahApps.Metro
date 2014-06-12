@@ -2,7 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="clr-namespace:MVVMApps.Metro.Controls">
     <ResourceDictionary.MergedDictionaries>
+<<<<<<< HEAD
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Page.xaml" />
+=======
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Sizes.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Page.xaml" />
+>>>>>>> d9abe2abc80b58c1a0b77ab692515d4aa34133fb
         
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/ValidationToolTipTemplate.xaml" />
 
@@ -17,6 +22,7 @@
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.DatePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.DataGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Expander.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ProgressBar.xaml" />

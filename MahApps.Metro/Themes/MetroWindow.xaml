@@ -35,7 +35,7 @@
                     </Grid.RowDefinitions>
 
                     <Rectangle x:Name="PART_WindowTitleBackground"
-                               Fill="{DynamicResource WindowTitleColorBrush}"
+                               Fill="{TemplateBinding WindowTitleBrush}"
                                Height="{Binding TitlebarHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                Visibility="{TemplateBinding ShowTitleBar, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Grid.Column="0"
@@ -72,6 +72,7 @@
                                     Grid.Column="2"
                                     Content="{TemplateBinding Title}"
                                     ContentTemplate="{TemplateBinding TitleTemplate}"
+                                    Focusable="False"
                                     HorizontalContentAlignment="Stretch"
                                     VerticalContentAlignment="Stretch"
                                     Height="{Binding TitlebarHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
@@ -191,6 +192,16 @@
             </Storyboard>
         </ControlTemplate.Resources>
         <ControlTemplate.Triggers>
+            <!-- handle active/inactive state -->
+            <Trigger Property="IsActive"
+                     Value="False">
+                <Setter TargetName="PART_WindowTitleBackground"
+                        Property="Fill"
+                        Value="{Binding Path=NonActiveWindowTitleBrush, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}}" />
+                <Setter TargetName="PART_Border"
+                        Property="BorderBrush"
+                        Value="{Binding Path=NonActiveBorderBrush, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}}" />
+            </Trigger>
             <!-- no icon and no icon content template -> collapse the icon content control -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -221,6 +232,8 @@
     </ControlTemplate>
 
     <Style TargetType="{x:Type Controls:MetroWindow}">
+        <Setter Property="WindowTitleBrush"
+                Value="{DynamicResource WindowTitleColorBrush}" />
         <Setter Property="TextElement.FontSize"
                 Value="{DynamicResource ContentFontSize}" />
         <Setter Property="Background"
@@ -282,8 +295,8 @@
                             <Image Width="{TemplateBinding Width}"
                                    Height="{TemplateBinding Height}"
                                    Source="{TemplateBinding Content}"
-                                   RenderOptions.EdgeMode="Aliased"
-                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                                   RenderOptions.EdgeMode="{Binding IconEdgeMode, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}}"
+                                   RenderOptions.BitmapScalingMode="{Binding IconBitmapScalingMode, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}}" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -479,8 +492,18 @@
                                 Height="{Binding TitlebarHeight, Mode=OneWay, RelativeSource={RelativeSource AncestorType=Controls:MetroWindow}}"
                                 Style="{Binding WindowMinButtonStyle, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}}"
                                 Foreground="{TemplateBinding Foreground}"
-                                ToolTip="{Binding Minimize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowButtonCommands}}}"
-                                Visibility="{Binding ShowMinButton, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                ToolTip="{Binding Minimize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowButtonCommands}}}">
+                            <Button.Visibility>
+                                <MultiBinding Converter="{x:Static conv:ResizeModeMinMaxButtonVisibilityConverter.Instance}"
+                                              ConverterParameter="MIN">
+                                    <Binding Path="ShowMinButton"
+                                             RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}"
+                                             Mode="OneWay" />
+                                    <Binding Path="ResizeMode"
+                                             RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}"
+                                             Mode="OneWay" />
+                                </MultiBinding>
+                            </Button.Visibility>
                             <Path Data="F1M0,6L0,9 9,9 9,6 0,6z"
                                   SnapsToDevicePixels="True"
                                   Fill="{TemplateBinding Foreground}" />
@@ -490,8 +513,18 @@
                                 Height="{Binding TitlebarHeight, Mode=OneWay, RelativeSource={RelativeSource AncestorType=Controls:MetroWindow}}"
                                 Style="{Binding WindowMaxButtonStyle, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}}"
                                 Foreground="{TemplateBinding Foreground}"
-                                ToolTip="{Binding Maximize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowButtonCommands}}}"
-                                Visibility="{Binding ShowMaxRestoreButton, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                ToolTip="{Binding Maximize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowButtonCommands}}}">
+                            <Button.Visibility>
+                                <MultiBinding Converter="{x:Static conv:ResizeModeMinMaxButtonVisibilityConverter.Instance}"
+                                              ConverterParameter="MAX">
+                                    <Binding Path="ShowMaxRestoreButton"
+                                             RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}"
+                                             Mode="OneWay" />
+                                    <Binding Path="ResizeMode"
+                                             RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}"
+                                             Mode="OneWay" />
+                                </MultiBinding>
+                            </Button.Visibility>
                             <Grid>
                                 <Path x:Name="MaximisePath"
                                       SnapsToDevicePixels="True"

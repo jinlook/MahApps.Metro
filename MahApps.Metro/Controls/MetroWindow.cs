@@ -10,7 +10,6 @@ using MVVMApps.Metro.Controls.Dialogs;
 using MVVMApps.Metro.Native;
 using System.Windows.Shapes;
 using System.Collections.Generic;
-using Microsoft.Windows.Shell;
 
 namespace MVVMApps.Metro.Controls
 {
@@ -39,10 +38,14 @@ namespace MVVMApps.Metro.Controls
         private const string PART_FlyoutModal = "PART_FlyoutModal";
 
         public static readonly DependencyProperty ShowIconOnTitleBarProperty = DependencyProperty.Register("ShowIconOnTitleBar", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
+        public static readonly DependencyProperty IconEdgeModeProperty = DependencyProperty.Register("IconEdgeMode", typeof(EdgeMode), typeof(MetroWindow), new PropertyMetadata(EdgeMode.Aliased));
+        public static readonly DependencyProperty IconBitmapScalingModeProperty = DependencyProperty.Register("IconBitmapScalingMode", typeof(BitmapScalingMode), typeof(MetroWindow), new PropertyMetadata(BitmapScalingMode.HighQuality));
         public static readonly DependencyProperty ShowTitleBarProperty = DependencyProperty.Register("ShowTitleBar", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true, OnShowTitleBarPropertyChangedCallback, OnShowTitleBarCoerceValueCallback));
+
         public static readonly DependencyProperty ShowMinButtonProperty = DependencyProperty.Register("ShowMinButton", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
-        public static readonly DependencyProperty ShowCloseButtonProperty = DependencyProperty.Register("ShowCloseButton", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
         public static readonly DependencyProperty ShowMaxRestoreButtonProperty = DependencyProperty.Register("ShowMaxRestoreButton", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
+        public static readonly DependencyProperty ShowCloseButtonProperty = DependencyProperty.Register("ShowCloseButton", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
+
         public static readonly DependencyProperty TitlebarHeightProperty = DependencyProperty.Register("TitlebarHeight", typeof(int), typeof(MetroWindow), new PropertyMetadata(30, TitlebarHeightPropertyChangedCallback));
         public static readonly DependencyProperty TitleCapsProperty = DependencyProperty.Register("TitleCaps", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
         public static readonly DependencyProperty SaveWindowPositionProperty = DependencyProperty.Register("SaveWindowPosition", typeof(bool), typeof(MetroWindow), new PropertyMetadata(false));
@@ -53,9 +56,11 @@ namespace MVVMApps.Metro.Controls
         public static readonly DependencyProperty WindowTransitionsEnabledProperty = DependencyProperty.Register("WindowTransitionsEnabled", typeof(bool), typeof(MetroWindow), new PropertyMetadata(true));
         public static readonly DependencyProperty MetroDialogOptionsProperty = DependencyProperty.Register("MetroDialogOptions", typeof(MetroDialogSettings), typeof(MetroWindow), new PropertyMetadata(new MetroDialogSettings()));
 
+        public static readonly DependencyProperty WindowTitleBrushProperty = DependencyProperty.Register("WindowTitleBrush", typeof(Brush), typeof(MetroWindow), new PropertyMetadata(Brushes.Transparent));
         public static readonly DependencyProperty GlowBrushProperty = DependencyProperty.Register("GlowBrush", typeof(SolidColorBrush), typeof(MetroWindow), new PropertyMetadata(null));
         public static readonly DependencyProperty NonActiveGlowBrushProperty = DependencyProperty.Register("NonActiveGlowBrush", typeof(SolidColorBrush), typeof(MetroWindow), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(153, 153, 153)))); // #999999
-        public static readonly DependencyProperty NonActiveBorderBrushProperty = DependencyProperty.Register("NonActiveBorderBrush", typeof(Brush), typeof(MetroWindow), new PropertyMetadata(null));
+        public static readonly DependencyProperty NonActiveBorderBrushProperty = DependencyProperty.Register("NonActiveBorderBrush", typeof(Brush), typeof(MetroWindow), new PropertyMetadata(Brushes.Gray));
+        public static readonly DependencyProperty NonActiveWindowTitleBrushProperty = DependencyProperty.Register("NonActiveWindowTitleBrush", typeof(Brush), typeof(MetroWindow), new PropertyMetadata(Brushes.Gray));
 
         public static readonly DependencyProperty IconTemplateProperty = DependencyProperty.Register("IconTemplate", typeof(DataTemplate), typeof(MetroWindow), new PropertyMetadata(null));
         public static readonly DependencyProperty TitleTemplateProperty = DependencyProperty.Register("TitleTemplate", typeof(DataTemplate), typeof(MetroWindow), new PropertyMetadata(null));
@@ -281,6 +286,24 @@ namespace MVVMApps.Metro.Controls
         }
 
         /// <summary>
+        /// Gets/sets edge mode of the titlebar icon.
+        /// </summary>
+        public EdgeMode IconEdgeMode
+        {
+            get { return (EdgeMode)this.GetValue(IconEdgeModeProperty); }
+            set { SetValue(IconEdgeModeProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets/sets bitmap scaling mode of the titlebar icon.
+        /// </summary>
+        public BitmapScalingMode IconBitmapScalingMode
+        {
+            get { return (BitmapScalingMode)this.GetValue(IconBitmapScalingModeProperty); }
+            set { SetValue(IconBitmapScalingModeProperty, value); }
+        }
+
+        /// <summary>
         /// Gets/sets whether the TitleBar is visible or not.
         /// </summary>
         public bool ShowTitleBar
@@ -336,6 +359,15 @@ namespace MVVMApps.Metro.Controls
         {
             get { return (bool)GetValue(ShowMinButtonProperty); }
             set { SetValue(ShowMinButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets/sets if the Maximize/Restore button is visible.
+        /// </summary>
+        public bool ShowMaxRestoreButton
+        {
+            get { return (bool)GetValue(ShowMaxRestoreButtonProperty); }
+            set { SetValue(ShowMaxRestoreButtonProperty, value); }
         }
 
         /// <summary>
@@ -398,21 +430,21 @@ namespace MVVMApps.Metro.Controls
         }
 
         /// <summary>
-        /// Gets/sets if the Maximize/Restore button is visible.
-        /// </summary>
-        public bool ShowMaxRestoreButton
-        {
-            get { return (bool)GetValue(ShowMaxRestoreButtonProperty); }
-            set { SetValue(ShowMaxRestoreButtonProperty, value); }
-        }
-
-        /// <summary>
         /// Gets/sets if the TitleBar's text is automatically capitalized.
         /// </summary>
         public bool TitleCaps
         {
             get { return (bool)GetValue(TitleCapsProperty); }
             set { SetValue(TitleCapsProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets/sets the brush used for the Window's title bar.
+        /// </summary>
+        public Brush WindowTitleBrush
+        {
+            get { return (Brush)GetValue(WindowTitleBrushProperty); }
+            set { SetValue(WindowTitleBrushProperty, value); }
         }
 
         /// <summary>
@@ -440,6 +472,15 @@ namespace MVVMApps.Metro.Controls
         {
             get { return (Brush)GetValue(NonActiveBorderBrushProperty); }
             set { SetValue(NonActiveBorderBrushProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets/sets the brush used for the Window's non-active title bar.
+        /// </summary>
+        public Brush NonActiveWindowTitleBrush
+        {
+            get { return (Brush)GetValue(NonActiveWindowTitleBrushProperty); }
+            set { SetValue(NonActiveWindowTitleBrushProperty, value); }
         }
 
         /// <summary>

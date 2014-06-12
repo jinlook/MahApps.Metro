@@ -83,6 +83,7 @@
     <Compile Include="Behaviours\BorderlessWindowBehavior.cs" />
     <Compile Include="Behaviours\GlowWindowBehavior.cs" />
     <Compile Include="Behaviours\StylizedBehaviorCollection.cs" />
+    <Compile Include="Behaviours\TabControlSelectFirstVisibleTabBehavior.cs" />
     <Compile Include="Behaviours\WindowsSettingBehaviour.cs" />
     <Compile Include="Controls\ClosingWindowEventHandlerArgs.cs" />
     <Compile Include="Controls\ComboBoxHelper.cs" />
@@ -92,8 +93,10 @@
     <Compile Include="Controls\Dialogs\DialogManager.cs" />
     <Compile Include="Controls\Dialogs\DialogStateChangedEventArgs.cs" />
     <Compile Include="Controls\Dialogs\InputDialog.cs" />
+    <Compile Include="Controls\Dialogs\LoginDialog.cs" />
     <Compile Include="Controls\Dialogs\MessageDialog.cs" />
     <Compile Include="Controls\Dialogs\ProgressDialog.cs" />
+    <Compile Include="Controls\Dialogs\ProgressDialogController.cs" />
     <Compile Include="Controls\Dialogs\SimpleDialog.cs" />
     <Compile Include="Controls\DropDownButton.cs" />
     <Compile Include="Controls\FlipView.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Converters\BackgroundToForegroundConverter.cs" />
     <Compile Include="Converters\FontSizeOffsetConverter.cs" />
     <Compile Include="Converters\IsNullConverter.cs" />
+    <Compile Include="Converters\MetroTabItemCloseButtonWidthConverter.cs" />
     <Compile Include="Converters\OffOnConverter.cs" />
     <Compile Include="Controls\Planerator.cs" />
     <Compile Include="Controls\ProgressRing.cs" />
@@ -137,6 +141,7 @@
     <Compile Include="Controls\TreeHelper.cs" />
     <Compile Include="Controls\VisualStates.cs" />
     <Compile Include="Controls\WindowCommands.cs" />
+    <Compile Include="Converters\ResizeModeMinMaxButtonVisibilityConverter.cs" />
     <Compile Include="Converters\ThicknessToDoubleConverter.cs" />
     <Compile Include="Converters\TreeViewMarginConverter.cs" />
     <Compile Include="Microsoft.Windows.Shell\Standard\ComGuids.cs" />
@@ -395,6 +400,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Sizes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ValidationToolTipTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -440,6 +449,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Dialogs\InputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Dialogs\LoginDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
