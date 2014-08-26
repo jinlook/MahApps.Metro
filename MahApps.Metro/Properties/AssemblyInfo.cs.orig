@@ -4,23 +4,24 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Markup;
 
-<<<<<<< HEAD
-
-[assembly: AssemblyCopyright("Copyright © MVVMApps.Metro 2013")]
-=======
-[assembly: AssemblyCopyright("Copyright © MahApps.Metro 2014")]
->>>>>>> 36fe5e517e0c65116d288fdabf2e68a2a9494bd9
+[assembly: AssemblyCopyright("Copyright © MVVMApps.Metro 2014")]
 [assembly: ComVisible(false)]
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 
-[assembly: XmlnsDefinition("http://metro.MVVMApps.com/winfx/xaml/shared", "MVVMApps.Metro.Behaviours")]
-[assembly: XmlnsDefinition("http://metro.MVVMApps.com/winfx/xaml/shared", "MVVMApps.Metro.Converters")]
-[assembly: XmlnsDefinition("http://metro.MVVMApps.com/winfx/xaml/controls", "MVVMApps.Metro.Controls")]
+[assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/shared", "MVVMApps.Metro.Behaviours")]
+[assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/shared", "MVVMApps.Metro.Converters")]
+[assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/controls", "MVVMApps.Metro.Controls")]
 
+<<<<<<< HEAD
 [assembly: AssemblyVersion("0.13.1.0")]
 [assembly: AssemblyFileVersion("0.13.1.0")]
+[assembly: AssemblyTitleAttribute("MVVMApps.Metro")]
+=======
+[assembly: AssemblyVersion("0.14.0.0")]
+[assembly: AssemblyFileVersion("0.14.0.0")]
 [assembly: AssemblyTitleAttribute("MahApps.Metro")]
+>>>>>>> e5f966829dcfd79d7f7d7ab9526e4dde917d8571
 
 [assembly: InternalsVisibleTo("Mahapps.Metro.Tests")]
 [assembly: AssemblyDescriptionAttribute("Toolkit for creating Metro styled WPF apps")]

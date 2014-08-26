@@ -2,14 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="clr-namespace:MVVMApps.Metro.Controls">
     <ResourceDictionary.MergedDictionaries>
-<<<<<<< HEAD
+        <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Sizes.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Page.xaml" />
-=======
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Sizes.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Page.xaml" />
->>>>>>> d9abe2abc80b58c1a0b77ab692515d4aa34133fb
         
+<<<<<<< HEAD
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/ValidationToolTipTemplate.xaml" />
+=======
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/ValidationErrorTemplate.xaml" />
+>>>>>>> e5f966829dcfd79d7f7d7ab9526e4dde917d8571
 
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.Scrollbars.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MVVMApps.Metro;component/Styles/Controls.ListView.xaml" />

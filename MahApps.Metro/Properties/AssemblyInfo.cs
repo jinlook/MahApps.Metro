@@ -13,8 +13,8 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/shared", "MVVMApps.Metro.Converters")]
 [assembly: XmlnsDefinition("http://metro.mahapps.com/winfx/xaml/controls", "MVVMApps.Metro.Controls")]
 
-[assembly: AssemblyVersion("0.13.1.0")]
-[assembly: AssemblyFileVersion("0.13.1.0")]
+[assembly: AssemblyVersion("0.14.0.0")]
+[assembly: AssemblyFileVersion("0.14.0.0")]
 [assembly: AssemblyTitleAttribute("MVVMApps.Metro")]
 
 [assembly: InternalsVisibleTo("Mahapps.Metro.Tests")]

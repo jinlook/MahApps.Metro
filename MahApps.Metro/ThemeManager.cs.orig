@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-﻿using MVVMApps.Metro.Controls;
-=======
 ﻿using System.Security;
-using MahApps.Metro.Controls;
->>>>>>> 36fe5e517e0c65116d288fdabf2e68a2a9494bd9
+using MVVMApps.Metro.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,29 +13,8 @@ namespace MVVMApps.Metro
     /// </summary>
     public static class ThemeManager
     {
-<<<<<<< HEAD
-        private static readonly ResourceDictionary LightResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseLight.xaml") };
-        private static readonly ResourceDictionary DarkResource = new ResourceDictionary { Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseDark.xaml") };
-
-=======
->>>>>>> 36fe5e517e0c65116d288fdabf2e68a2a9494bd9
         private static IList<Accent> _accents;
         private static IList<AppTheme> _appThemes;
-
-        // We use this mapping to lookup the corresponding (obsolete) theme for the default themes
-        private static readonly Dictionary<string, Theme> compatibilityThemeMapping =
-            new Dictionary<string, Theme>
-            {
-                {"BaseDark", Theme.Dark},
-                {"BaseLight", Theme.Light}
-            };
-
-        private static readonly Dictionary<Theme, string> reverseCompatibilityThemeMapping =
-            new Dictionary<Theme, string>
-            {
-                {Theme.Dark, "BaseDark"},
-                {Theme.Light, "BaseLight"}
-            };
 
         /// <summary>
         /// Gets a list of all of default themes.
@@ -48,34 +23,6 @@ namespace MVVMApps.Metro
         {
             get
             {
-<<<<<<< HEAD
-                return _accents ?? (_accents =
-                    new List<Accent>{
-                        new Accent("Red", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Red.xaml")),
-                        new Accent("Green", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Green.xaml")),
-                        new Accent("Blue", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Blue.xaml")),
-                        new Accent("Purple", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Purple.xaml")),
-                        new Accent("Orange", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Orange.xaml")),
-
-                        new Accent("Lime", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Lime.xaml")),
-                        new Accent("Emerald", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Emerald.xaml")),
-                        new Accent("Teal", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Teal.xaml")),
-                        new Accent("Cyan", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Cyan.xaml")),
-                        new Accent("Cobalt", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Cobalt.xaml")),
-                        new Accent("Indigo", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Indigo.xaml")),
-                        new Accent("Violet", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Violet.xaml")),
-                        new Accent("Pink", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Pink.xaml")),
-                        new Accent("Magenta", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Magenta.xaml")),
-                        new Accent("Crimson", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Crimson.xaml")),
-                        new Accent("Amber", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Amber.xaml")),
-                        new Accent("Yellow", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Yellow.xaml")),
-                        new Accent("Brown", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Brown.xaml")),
-                        new Accent("Olive", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Olive.xaml")),
-                        new Accent("Steel", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Steel.xaml")),
-                        new Accent("Mauve", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Mauve.xaml")),
-                        new Accent("Sienna", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Sienna.xaml")),
-                    });
-=======
                 if (_accents != null)
                     return _accents;
 
@@ -88,11 +35,10 @@ namespace MVVMApps.Metro
 
                 foreach (var color in colors)
                 {
-                    _accents.Add(new Accent(color, new Uri(string.Format("pack://application:,,,/MahApps.Metro;component/Styles/Accents/{0}.xaml", color))));
+                    _accents.Add(new Accent(color, new Uri(string.Format("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/{0}.xaml", color))));
                 }
 
                 return _accents;
->>>>>>> 36fe5e517e0c65116d288fdabf2e68a2a9494bd9
             }
         }
 
@@ -112,7 +58,7 @@ namespace MVVMApps.Metro
 
                 foreach (var color in themes)
                 {
-                    var appTheme = new AppTheme(color, new Uri(string.Format("pack://application:,,,/MahApps.Metro;component/Styles/Accents/{0}.xaml", color)));
+                    var appTheme = new AppTheme(color, new Uri(string.Format("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/{0}.xaml", color)));
 
                     _appThemes.Add(appTheme);
                 }
@@ -236,8 +182,69 @@ namespace MVVMApps.Metro
         {
             if (resources == null) throw new ArgumentNullException("resources");
 
-            return Accents.FirstOrDefault(x => x.Resources.Source == resources.Source);
+            var builtInAccent = Accents.FirstOrDefault(x => x.Resources.Source == resources.Source);
+            if (builtInAccent != null)
+            {
+                return builtInAccent;
+            }
+
+            // support dynamically created runtime resource dictionaries
+            if (resources.Source == null)
+            {
+                if (IsAccentDictionary(resources))
+                {
+                    return new Accent
+                    {
+                        Name = "Runtime accent",
+                        Resources = resources,
+                    };
+                }
+            }
+
+            return null;
         }
+
+        /// <summary>
+        /// Determines whether the specified resource dictionary represents an <see cref="Accent"/>.
+        /// <para />
+        /// This might include runtime accents which do not have a resource uri.
+        /// </summary>
+        /// <param name="resources">The resources.</param>
+        /// <returns><c>true</c> if the resource dictionary is an <see cref="Accent"/>; otherwise, <c>false</c>.</returns>
+        /// <exception cref="System.ArgumentNullException">resources</exception>
+        public static bool IsAccentDictionary(ResourceDictionary resources)
+        {
+            if (resources == null) throw new ArgumentNullException("resources");
+
+            // Note: add more checks if these keys aren't sufficient
+            var styleKeys = new List<string>(new[]
+            {
+                "HighlightColor",
+                "AccentColor",
+                "AccentColor2",
+                "AccentColor3",
+                "AccentColor4",
+                "HighlightBrush",
+                "AccentColorBrush",
+                "AccentColorBrush2",
+                "AccentColorBrush3",
+                "AccentColorBrush4",
+            });
+
+            foreach (var styleKey in styleKeys)
+            {
+                // Note: do not use contains, because that will look in all merged dictionaries as well. We need to check
+                // out the actual keys of the current resource dictionary
+                if (!(from object resourceKey in resources.Keys 
+                     select resourceKey as string).Any(keyAsString => string.Equals(keyAsString, styleKey)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Gets a resource from the detected AppStyle.
         /// </summary>
@@ -248,7 +255,15 @@ namespace MVVMApps.Metro
         {
             var appStyle = window != null ? DetectAppStyle(window) : DetectAppStyle(Application.Current);
             if (appStyle == null && window != null)
+            {
                 appStyle = DetectAppStyle(Application.Current); //no resources in the window's resources.
+            }
+
+            if (appStyle == null)
+            {
+                // nothing to do here, we can't found an app style (make sure all custom themes are added!)
+                return null;
+            }
 
             object resource = appStyle.Item1.Resources[key]; //check the theme first
 
@@ -456,7 +471,6 @@ namespace MVVMApps.Metro
             AppTheme currentTheme = null;
             Tuple<AppTheme, Accent> detectedAccentTheme = null;
 
-
             if (DetectThemeFromResources(ref currentTheme, resources))
             {
                 if (GetThemeFromResources(currentTheme, resources, ref detectedAccentTheme))
@@ -533,6 +547,7 @@ namespace MVVMApps.Metro
         {
             SafeRaise.Raise(IsThemeChanged, Application.Current, new OnThemeChangedEventArgs() { AppTheme = newTheme, Accent = newAccent });
         }
+<<<<<<< HEAD
 
         #region obsoletes
 
@@ -553,7 +568,7 @@ namespace MVVMApps.Metro
 
                 foreach (var color in colors)
                 {
-                    _accents.Add(new Accent(color, new Uri(string.Format("pack://application:,,,/MahApps.Metro;component/Styles/Accents/{0}.xaml", color))));
+                    _accents.Add(new Accent(color, new Uri(string.Format("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/{0}.xaml", color))));
                 }
 
                 return _accents;
@@ -634,13 +649,14 @@ namespace MVVMApps.Metro
         public static bool InvalidateSystemResourcesOnBackgroundThread { get; set; }
 
         #endregion
+=======
+>>>>>>> e5f966829dcfd79d7f7d7ab9526e4dde917d8571
     }
 
     public class OnThemeChangedEventArgs : EventArgs
     {
         public AppTheme AppTheme { get; set; }
-        [Obsolete("This property is obsolete. Use AppTheme.Theme instead.")]
-        public Theme Theme { get; set; }
+
         public Accent Accent { get; set; }
     }
 }
