@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Media;
 using MVVMApps.Metro;
-using Mahapps.Metro.Tests.TestHelpers;
+using MVVMApps.Metro.Tests.TestHelpers;
 using Xunit;
 
-namespace Mahapps.Metro.Tests
+namespace MVVMApps.Metro.Tests
 {
     public class CleanWindowTest : AutomationTestBase
     {

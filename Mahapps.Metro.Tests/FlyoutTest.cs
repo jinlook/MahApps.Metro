@@ -8,7 +8,7 @@ using MVVMApps.Metro;
 using MVVMApps.Metro.Controls;
 using Xunit;
 
-namespace Mahapps.Metro.Tests
+namespace MVVMApps.Metro.Tests
 {
     public class FlyoutTest : AutomationTestBase
     {

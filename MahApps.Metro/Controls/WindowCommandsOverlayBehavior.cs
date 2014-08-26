@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     [Flags]
     public enum WindowCommandsOverlayBehavior

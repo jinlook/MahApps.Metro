@@ -7,7 +7,7 @@ using System.Windows.Media;
 using MVVMApps.Metro.Controls;
 using Xunit;
 
-namespace Mahapps.Metro.Tests.TestHelpers
+namespace MVVMApps.Metro.Tests.TestHelpers
 {
     public static class WindowHelpers
     {

@@ -5,7 +5,7 @@ using MVVMApps.Metro.Controls;
 using MVVMApps.Metro.Tests.TestHelpers;
 using Xunit;
 
-namespace Mahapps.Metro.Tests
+namespace MVVMApps.Metro.Tests
 {
     public class MetroWindowTest : AutomationTestBase
     {

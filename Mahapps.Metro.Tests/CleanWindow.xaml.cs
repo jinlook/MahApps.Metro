@@ -1,4 +1,4 @@
-﻿namespace Mahapps.Metro.Tests
+﻿namespace MVVMApps.Metro.Tests
 {
     public partial class CleanWindow
     {

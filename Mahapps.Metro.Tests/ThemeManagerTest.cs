@@ -7,7 +7,7 @@ using MVVMApps.Metro;
 using MVVMApps.Metro.Controls;
 using Xunit;
 
-namespace Mahapps.Metro.Tests
+namespace MVVMApps.Metro.Tests
 {
     public class ThemeManagerTest : AutomationTestBase
     {
@@ -16,7 +16,7 @@ namespace Mahapps.Metro.Tests
         {
             await TestHost.SwitchToAppThread();
 
-            ThemeManager.AddAccent("TestAccent", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml"));
+            ThemeManager.AddAccent("TestAccent", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Blue.xaml"));
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace Mahapps.Metro.Tests
         {
             await TestHost.SwitchToAppThread();
 
-            ThemeManager.AddAppTheme("TestTheme", new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml"));
+            ThemeManager.AddAppTheme("TestTheme", new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseDark.xaml"));
         }
 
         [Fact]
