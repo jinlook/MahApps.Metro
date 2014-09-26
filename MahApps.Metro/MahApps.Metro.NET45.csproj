@@ -89,6 +89,7 @@
     <Compile Include="Controls\ClosingWindowEventHandlerArgs.cs" />
     <Compile Include="Controls\ComboBoxHelper.cs" />
     <Compile Include="Controls\ControlsHelper.cs" />
+    <Compile Include="Controls\CustomValidationPopup.cs" />
     <Compile Include="Controls\DataGridNumericUpDownColumn.cs" />
     <Compile Include="Controls\Dialogs\BaseMetroDialog.cs" />
     <Compile Include="Controls\Dialogs\DialogManager.cs" />
@@ -366,6 +367,11 @@
       <DependentUpon>Controls.xaml</DependentUpon>
     </Page>
     <Page Include="Styles\Controls.ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Controls.xaml</DependentUpon>
+    </Page>
+    <Page Include="Styles\Controls.StatusBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>Controls.xaml</DependentUpon>

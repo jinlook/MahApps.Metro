@@ -152,6 +152,25 @@ namespace MVVMApps.Metro.Tests
             Assert.True(windowCommandsZIndex > flyoutindex);
         }
 
+        [Fact]
+        public async Task RaisesIsOpenChangedEvent()
+        {
+            await TestHost.SwitchToAppThread();
+
+            var window = await WindowHelpers.CreateInvisibleWindowAsync<FlyoutWindow>();
+
+            bool eventRaised = false;
+
+            window.RightFlyout.IsOpenChanged += (sender, args) =>
+            {
+                eventRaised = true;
+            };
+
+            window.RightFlyout.IsOpen = true;
+
+            Assert.True(eventRaised);
+        }
+
         public class ColorTest
         {
             [Fact]
