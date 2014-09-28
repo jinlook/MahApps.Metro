@@ -4,9 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
-using MahApps.Metro.Native;
+using MVVMApps.Metro.Native;
 
-namespace MahApps.Metro.Controls
+namespace MVVMApps.Metro.Controls
 {
     /// <summary>
     /// This custom popup is used by the validation error template.

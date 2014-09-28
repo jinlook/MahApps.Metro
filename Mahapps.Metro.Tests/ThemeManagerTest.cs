@@ -84,7 +84,7 @@ namespace MVVMApps.Metro.Tests
             AppTheme theme = ThemeManager.GetAppTheme("basedark");
 
             Assert.NotNull(theme);
-            Assert.Equal(new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml"), theme.Resources.Source);
+            Assert.Equal(new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/BaseDark.xaml"), theme.Resources.Source);
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace MVVMApps.Metro.Tests
 
             var dic = new ResourceDictionary
             {
-                Source = new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/basedark.xaml")
+                Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/basedark.xaml")
             };
 
             AppTheme detected = ThemeManager.GetAppTheme(dic);
@@ -111,7 +111,7 @@ namespace MVVMApps.Metro.Tests
             Accent accent = ThemeManager.GetAccent("blue");
 
             Assert.NotNull(accent);
-            Assert.Equal(new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml"), accent.Resources.Source);
+            Assert.Equal(new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/Blue.xaml"), accent.Resources.Source);
         }
 
         [Fact]
@@ -121,7 +121,7 @@ namespace MVVMApps.Metro.Tests
 
             var dic = new ResourceDictionary
             {
-                Source = new Uri("pack://application:,,,/MahApps.Metro;component/Styles/Accents/blue.xaml")
+                Source = new Uri("pack://application:,,,/MVVMApps.Metro;component/Styles/Accents/blue.xaml")
             };
 
             Accent detected = ThemeManager.GetAccent(dic);
